@@ -1,0 +1,71 @@
+---
+title: "Description of the GRID db"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Description of the GRID db}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Database content
+
+The tables in the database have the following table names, column names and row and column counts:
+
+```{r setup}
+library(institutions)
+library(dplyr, warn.conflicts = FALSE)
+library(purrr)
+library(knitr)
+
+institutions_download()
+
+# fcn to describe a table
+
+desc_table <- function(x)
+  tibble(
+    tablename = x,
+    rowcount = institutions_table(x) %>% nrow(),
+    colcount = institutions_table(x) %>% ncol(),
+    colnames = institutions_table(x) %>% names() %>% paste0(collapse = ", ")
+  )
+
+# iterate over existing tables and display results
+
+tables <- institutions_tables()
+
+desc <-
+ tables %>% map_df(desc_table) %>%
+ arrange(desc(rowcount))
+
+knitr::kable(desc)
+
+```
+
+## Size on disk
+
+The size on disk for some of the generated files (the SQLite db is larger than the zipped CSVs downloaded due to the Full Text Search tables that are generated and added to the database):
+
+```{r}
+
+cfg <- institutions_cfg()
+
+print_fs <- function(x) 
+  sprintf("File %s has size %s", basename(x), 
+          utils:::format.object_size(file.info(x)$size, "auto"))
+
+files <- c(cfg$zip, cfg$db)
+
+sizes <- map_chr(files, print_fs)
+
+```
+
+**`r sizes[1]`**
+
+**`r sizes[2]`**
