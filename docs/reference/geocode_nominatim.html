@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download the GRID dataset and install the local SQLite3 database — institutions_download • institutions</title>
+<title>Lookup coordinates using the Nominatim OSM API — geocode_nominatim • institutions</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download the GRID dataset and install the local SQLite3 database — institutions_download" />
-<meta property="og:description" content="Download the GRID dataset and install the local SQLite3 database" />
+<meta property="og:title" content="Lookup coordinates using the Nominatim OSM API — geocode_nominatim" />
+<meta property="og:description" content="This looks up location data (© OpenStreetMap contributors) including coordinates from the Nomination OSM API." />
 
 
 
@@ -129,29 +129,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download the GRID dataset and install the local SQLite3 database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KTH-Library/institutions/blob/master/R/download.R'><code>R/download.R</code></a></small>
-    <div class="hidden name"><code>institutions_download.Rd</code></div>
+    <h1>Lookup coordinates using the Nominatim OSM API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KTH-Library/institutions/blob/master/R/geocode.R'><code>R/geocode.R</code></a></small>
+    <div class="hidden name"><code>geocode_nominatim.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download the GRID dataset and install the local SQLite3 database</p>
+    <p>This looks up location data (© OpenStreetMap contributors) including coordinates from the Nomination OSM API.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>institutions_download</span>(<span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>geocode_nominatim</span>(<span class='no'>address</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>overwrite</th>
-      <td><p>logical indicating if local db should be overwritten</p></td>
+      <th>address</th>
+      <td><p>character string for the address</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>logical indicating if the db exists locally, invisibly</p>
+    <p>tibble with results</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Data from this service is provided under the ODbL license which requires to share alike</p>
+<p>See attribution and license here: <a href='https://www.openstreetmap.org/copyright'>https://www.openstreetmap.org/copyright</a></p>
+<p>See usage policy here: <a href='https://operations.osmfoundation.org/policies/nominatim/'>https://operations.osmfoundation.org/policies/nominatim/</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
