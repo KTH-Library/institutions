@@ -23,7 +23,8 @@ Imports:
     RSQLite,
     stringr,
     tibble,
-    zip
+    zip,
+    jsonlite
 Suggests: 
     knitr,
     rmarkdown,

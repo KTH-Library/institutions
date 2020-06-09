@@ -48,6 +48,8 @@ knitr::kable(desc)
 
 ```
 
+The tables in the database are based on the CSV format. This format is described in more detail here: https://grid.ac/format.
+
 ## Size on disk
 
 The size on disk for some of the generated files (the SQLite db is larger than the zipped CSVs downloaded due to the Full Text Search tables that are generated and added to the database):
