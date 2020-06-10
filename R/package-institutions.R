@@ -42,3 +42,25 @@
 #' @name institutions-package
 #' @keywords package
 NULL
+
+#' Research Organization Registry dataset from April 2020
+#'
+#' A dataset containing data from the Research Organization Registry Community; see \url{https://ror.org/}.
+#'
+#' All ROR IDs and metadata are provided under the Creative Commons CC0 1.0 Universal Public Domain Dedication.
+#'
+#' There are no restrictions on access to and use of ROR IDs and metadata.
+#'
+#' Some more information about this dataset can be found at: \url{https://ror.org/facts/#core-components}
+#'
+#' @format a list of data frames, where ror_orgs is the core table and child tables
+#' are ror_labels, ror_aliases, ror_acronyms, ror_links, ror_types and ror_ids
+#'
+#' The id colums is the primary identifier to link all tables.
+#'
+#' The ror_ids table contains external identifers including, for all records, the GRID identifier.
+#'
+#' This identifier can be used to link to the GRID dataset exposed in this R package.
+#'
+#' @source \url{https://ndownloader.figshare.com/files/22204641}
+"ror"

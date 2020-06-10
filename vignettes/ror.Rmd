@@ -1,0 +1,124 @@
+---
+title: "Data from the Research Organization Registry Community"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data from the Research Organization Registry Community}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(institutions)
+library(dplyr)
+```
+
+A static dataset from April 2020 from the Research Organization Registry Community has been bundled in this R package.
+
+It provides GRID identifiers for research organizations and can therefore be used to link to the data otherwise provided through functions in this R package.
+
+Some examples of usage follow:
+
+```{r}
+
+# get a GRID identifier for a specific institution
+id_kth_grid <- 
+  institutions_search("Royal Institute of Technology")$grid_id
+
+# get the corresponding ROR identifier
+id_kth_ror <- 
+  ror$ror_orgs %>%
+  filter(GRID == id_kth_grid) %>%
+  pull(id)
+
+# what ROR core info can we get for this identifier?
+ror$ror_orgs %>% filter(id == id_kth_ror) %>% glimpse()
+
+# what other identifiers are associated with this org?
+ror$ror_ids %>% filter(id == id_kth_ror)
+
+# ROR child table entries for labels, aliases, acronyms, links and types?
+
+# what labels are associated?
+ror$ror_labels %>% filter(id == id_kth_ror)
+
+# what aliases?
+ror$ror_aliases %>% filter(id == id_kth_ror)
+
+# what acronyms?
+ror$ror_acronyms %>% filter(id == id_kth_ror)
+
+# what links?
+ror$ror_links %>% filter(id == id_kth_ror)
+
+# what types?
+ror$ror_types %>% filter(id == id_kth_ror)
+
+```
+
+# Some summaries
+
+The full dataset is available and can be summarized.
+
+## Using "child tables" for summaries
+
+A few examples:
+
+```{r}
+
+# what top five types of orgs are represented in this data?
+ror$ror_types %>% count(types) %>% arrange(desc(n)) %>% head(5)
+
+# what are the most frequent language codes used for labels associated with orgs?
+ror$ror_labels %>% group_by(iso639) %>% count() %>% arrange(desc(n)) %>% head(5)
+
+# top 5 companies with many aliases
+ror$ror_aliases %>% count(aliases) %>% arrange(desc(n)) %>% head(5)
+
+# why does IBM have so many acronyms? seemingly because it is a multi-national corp.
+ror$ror_aliases %>% filter(aliases == "International Business Machines Corporation") %>% 
+  inner_join(ror$ror_orgs) %>%  pull(name) %>% paste0(collapse = ", ")
+
+# what is the most frequently used acronym and which orgs use this abbreviation for its name?
+ror$ror_acronyms %>% count(acronyms) %>% arrange(desc(n))
+ror$ror_acronyms %>% filter(acronyms == "CCC") %>% inner_join(ror$ror_orgs) %>% pull(name) %>% paste0(collapse = ", ")
+
+# some orgs have more than one link, seems to be duplicates?
+ror$ror_links %>% group_by(id) %>% count(links) %>% filter(n > 1) %>% ungroup()
+ror$ror_links %>% filter(id == "https://ror.org/01eea1w69")	
+
+```
+
+## External identifiers
+
+
+```{r}
+
+extids <- ror$ror_ids
+
+# which external identifiers are most frequently provided?
+# one given identifier can have multiple other identifiers esp FundRef
+extids %>%
+  group_by(name) %>%
+  count() %>%
+  arrange(desc(n))
+
+# which WikiData identifiers does a set of orgs have?
+ids_wikidata <- 
+  extids %>% filter(
+  id %in% c("https://ror.org/052gg0110", "https://ror.org/013meh722"),
+  name == "Wikidata") %>%
+  distinct() %>%
+  pull("value")
+
+knitr::kable(escape = FALSE, tibble(url = sprintf("<a href='https://www.wikidata.org/wiki/%s'>%s</a>", ids_wikidata, ids_wikidata)))
+
+```
+
+
