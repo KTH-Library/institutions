@@ -23,7 +23,7 @@ library(dplyr)
 
 # using Nominatim API (Open Street Map)
 osm <- 
-  geocode_nominatim("Kungliga Tekniska Högskolan") 
+  geocode_nominatim("Kungliga Tekniska Hogskolan") 
 
 # coordinates etc
 osm %>% glimpse()
@@ -33,7 +33,7 @@ osm %>% select(lat, lon)
 
 mq <- 
   geocode_mapquest(
-    street = "Kungliga Tekniska Högskolan",
+    street = "Kungliga Tekniska Hogskolan",
     zip = "100 44",
     city = "Stockholm") 
 
