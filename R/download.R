@@ -10,10 +10,10 @@ institutions_download <- function(overwrite = FALSE) {
 
   cfg <- institutions_cfg()
 
-  if (!dir.exists(dirname(cfg$dest)))
-    dir.create(dirname(cfg$dest), recursive = TRUE)
+  if (!dir.exists(dirname(cfg$zip)))
+    dir.create(dirname(cfg$zip), recursive = TRUE)
 
-  if (overwrite || !file.exists(cfg$dest)) {
+  if (overwrite || !file.exists(cfg$zip)) {
     message("Downloading data from ", cfg$src_url)
     download.file(
       cfg$src_url, destfile = cfg$zip,

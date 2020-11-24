@@ -20,6 +20,7 @@ Two convenience functions are provided that allows address information to be use
 library(institutions)
 library(dplyr)
 
+institutions_download()
 
 # using Nominatim API (Open Street Map)
 osm <- 
@@ -33,7 +34,7 @@ osm %>% select(lat, lon)
 
 mq <- 
   geocode_mapquest(
-    street = "Kungliga Tekniska Högskolan",
+    street = "Kungliga Tekniska Hogskolan",
     zip = "100 44",
     city = "Stockholm") 
 
@@ -42,5 +43,7 @@ mq %>%
   mutate_at(vars(starts_with("admin")), function(x) iconv(x, to = "iso-8859-1")) %>%
   slice(2) %>%  # use only the second result
   glimpse()
+
+#browseURL(mq$)
 
 ```

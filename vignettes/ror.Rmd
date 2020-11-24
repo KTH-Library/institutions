@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(institutions)
 library(dplyr)
+
+institutions_download()
+
 ```
 
 A static dataset from October 2020 from the Research Organization Registry Community has been bundled in this R package.

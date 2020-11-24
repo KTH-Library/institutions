@@ -52,3 +52,7 @@ check()
 pkgdown::build_site()
 
 use_build_ignore(files = "devel")
+
+unlink(institutions_cfg()$zip)
+unlink(institutions_cfg()$db)
+build_vignettes()
