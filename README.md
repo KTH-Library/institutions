@@ -17,6 +17,27 @@ institutional data in R from the Global Research Identifier Database
 International licence (see <https://grid.ac>). This dataset is used by
 for example Altmetric, Dimensions, Figshare and others.
 
+This package also embeds data from from the Research Organization
+Registry Community (see <https://ror.org/>). All ROR IDs and metadata
+are provided under the Creative Commons CC0 1.0 Universal Public Domain
+Dedication. There are no restrictions on access to and use of ROR IDs
+and metadata. Some more information about this dataset can be found at:
+<https://ror.org/facts/#core-components>. The `ror` dataset provides
+acccess to this data from within R; the `ror$ror_ids` table contains
+external identifers including, for all records, the GRID identifier.
+This identifier can be used to link to the ROR data with the GRID
+dataset exposed in this R package.
+
+## R “data package” background
+
+This R package is a kind of [“data
+package”](https://r-pkgs.org/data.html#data-data) primarily intended
+to be used to provide reference data (from GRID and ROR) when used in
+other workflows. It is not a “data only package”, since it provides some
+functions that might also be useful when doing data wrangling against
+this reference data (mainly for supporting geocoding and full text
+search lookups).
+
 The package downloads some curated data from
 <https://digitalscience.figshare.com/ndownloader/files/20151785> and
 migrates this into a full text search indexed SQLite database residing
@@ -46,7 +67,7 @@ You can install the development version of institutions from
 
 ``` r
 library(devtools)
-install_github("KTH-Library/institutions")
+install_github("KTH-Library/institutions", dependencies = TRUE)
 ```
 
 ## Example
@@ -101,7 +122,7 @@ institutions_tables()
 
 # get acronym data
 institutions_table("acronyms")
-#> # A tibble: 39,015 x 2
+#> # A tibble: 41,210 x 2
 #>    grid_id     acronym
 #>    <chr>       <chr>  
 #>  1 grid.1001.0 ANU    
@@ -114,7 +135,7 @@ institutions_table("acronyms")
 #>  8 grid.1013.3 USYD   
 #>  9 grid.1016.6 CSIRO  
 #> 10 grid.1017.7 RMIT   
-#> # … with 39,005 more rows
+#> # … with 41,200 more rows
 ```
 
 Custom queries can be made:
