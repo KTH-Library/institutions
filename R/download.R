@@ -45,6 +45,7 @@ institutions_download <- function(overwrite = FALSE) {
 #' @importFrom RSQLite dbWriteTable dbDisconnect
 #' @importFrom purrr walk
 #' @importFrom dplyr filter pull
+#' @importFrom rlang .data
 #' @noRd
 create_db <- function(db, src_zip) {
 
@@ -59,8 +60,8 @@ create_db <- function(db, src_zip) {
   zips <-
     src_zip %>%
     zip::zip_list() %>%
-    filter(stringr::str_ends(vars("filename"), "csv")) %>%
-    pull(vars("filename"))
+    filter(stringr::str_ends(.data$filename, "csv")) %>%
+    pull(.data$filename)
 
   zipcsv_table <- function(filepath) {
     basename(tools::file_path_sans_ext(filepath))
@@ -89,9 +90,11 @@ src_sqlite_institutions <- function() {
 
   cfg <- institutions_cfg()
 
-  if (!file.exists(cfg$db))
-    stop("No database available at ", cfg$db,
+  if (!file.exists(cfg$db)) {
+    warning("No database available at ", cfg$db,
          " please use institutions_download() first")
+    institutions_download()
+  }
 
   RSQLite::dbConnect(RSQLite::SQLite(), cfg$db)
 }

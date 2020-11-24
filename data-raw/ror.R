@@ -3,10 +3,15 @@ library(dplyr)
 library(purrr)
 library(tidyr)
 
-#"https://ndownloader.figshare.com/files/22204641" %>%
-#  download.file(destfile = "~/ror.zip")
 
-tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/22204641") {
+# URL for the ROR dataset can be found by ...
+# - Follow this DOI: https://doi.org/10.6084/m9.figshare.c.4596503
+# - Scroll to the bottom, click the latest dataset
+# - Find a Dowload button on that page and copy the URL that it leads to
+# On 24 Nov 2020, the latest such link was:
+# - https://ndownloader.figshare.com/files/25186040
+
+tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/25186040") {
 
   t0 <- Sys.time()
   message("Downloading the ROR data, patience please (tidying the data takes time), starting at: ", t0)
@@ -69,7 +74,8 @@ tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/22204641")
   names(orgs) <- rename_colz(names(orgs))
   extids <- extids %>% mutate(name = rename_colz(name))
   # remove duplicated column (names and values)
-  orgs <- orgs %>% select(-8)
+
+  orgs <- orgs %>% select(-which(duplicated(names(orgs))))
 
   t1 <- Sys.time()
   duration <- round(difftime(t1, t0, units = "secs"))
@@ -83,6 +89,6 @@ tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/22204641")
     )
 }
 
-ror <- tidy_rorzip()
+ror <- tidy_rorzip("https://ndownloader.figshare.com/files/25186040")
 
 usethis::use_data(ror, overwrite = TRUE)

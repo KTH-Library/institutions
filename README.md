@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg)](https://github.com/KTH-Library/institutions/actions)
 <!-- badges: end -->
 
 The goal of the R package `institutions` is to provide access to

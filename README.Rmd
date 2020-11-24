@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build status](https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg)](https://github.com/KTH-Library/institutions/actions)
 <!-- badges: end -->
 
 The goal of the R package `institutions` is to provide access to institutional data in R from the Global Research Identifier Database (GRID) which is available under the Creative Commons Public Domain 1.0 International licence (see https://grid.ac). This dataset is used by for example Altmetric, Dimensions, Figshare and others.
