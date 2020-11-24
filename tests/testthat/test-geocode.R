@@ -1,5 +1,7 @@
 test_that("geocode calls works", {
 
+  skip_on_ci()
+
   t1 <- geocode_nominatim("SOLNA") %>%
     pull("display_name") == "Solna kommun, Stockholms län, Svealand, Sverige"
 
