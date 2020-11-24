@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -88,7 +88,8 @@
 
       
 
-      </header><div class="row">
+      </header><script src="meta_files/header-attrs-2.5/header-attrs.js"></script><script src="meta_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="meta_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="meta_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Description of the GRID db</h1>
@@ -132,6 +133,12 @@
 
 <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">desc</span>)</pre></body></html></div>
 <table class="table">
+<colgroup>
+<col width="4%">
+<col width="2%">
+<col width="2%">
+<col width="89%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">tablename</th>
 <th align="right">rowcount</th>
@@ -141,67 +148,67 @@
 <tbody>
 <tr class="odd">
 <td align="left">external_ids</td>
-<td align="right">202501</td>
+<td align="right">216534</td>
 <td align="right">3</td>
 <td align="left">grid_id, external_id_type, external_id</td>
 </tr>
 <tr class="even">
 <td align="left">addresses</td>
-<td align="right">97819</td>
+<td align="right">98598</td>
 <td align="right">14</td>
 <td align="left">grid_id, line_1, line_2, line_3, lat, lng, postcode, primary, city, state, state_code, country, country_code, geonames_city_id</td>
 </tr>
 <tr class="odd">
 <td align="left">grid</td>
-<td align="right">97819</td>
+<td align="right">98598</td>
 <td align="right">5</td>
 <td align="left">ID, Name, City, State, Country</td>
 </tr>
 <tr class="even">
 <td align="left">institutes</td>
-<td align="right">97819</td>
+<td align="right">98598</td>
 <td align="right">5</td>
 <td align="left">grid_id, name, wikipedia_url, email_address, established</td>
 </tr>
 <tr class="odd">
 <td align="left">types</td>
-<td align="right">95613</td>
+<td align="right">98574</td>
 <td align="right">2</td>
 <td align="left">grid_id, type</td>
 </tr>
 <tr class="even">
 <td align="left">links</td>
-<td align="right">88202</td>
+<td align="right">96609</td>
 <td align="right">2</td>
 <td align="left">grid_id, link</td>
 </tr>
 <tr class="odd">
 <td align="left">acronyms</td>
-<td align="right">39015</td>
+<td align="right">41210</td>
 <td align="right">2</td>
 <td align="left">grid_id, acronym</td>
 </tr>
 <tr class="even">
 <td align="left">relationships</td>
-<td align="right">34660</td>
+<td align="right">37902</td>
 <td align="right">3</td>
 <td align="left">grid_id, relationship_type, related_grid_id</td>
 </tr>
 <tr class="odd">
 <td align="left">labels</td>
-<td align="right">24755</td>
+<td align="right">25726</td>
 <td align="right">3</td>
 <td align="left">grid_id, iso639, label</td>
 </tr>
 <tr class="even">
 <td align="left">aliases</td>
-<td align="right">22070</td>
+<td align="right">23564</td>
 <td align="right">2</td>
 <td align="left">grid_id, alias</td>
 </tr>
 <tr class="odd">
 <td align="left">geonames</td>
-<td align="right">14303</td>
+<td align="right">14492</td>
 <td align="right">14</td>
 <td align="left">geonames_city_id, city, nuts_level1_code, nuts_level1_name, nuts_level2_code, nuts_level2_name, nuts_level3_code, nuts_level3_name, geonames_admin1_code, geonames_admin1_name, geonames_admin1_ascii_name, geonames_admin2_code, geonames_admin2_name, geonames_admin2_ascii_name</td>
 </tr>
@@ -223,8 +230,8 @@
 <span class="no">files</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">cfg</span>$<span class="no">zip</span>, <span class="no">cfg</span>$<span class="no">db</span>)
 
 <span class="no">sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">files</span>, <span class="no">print_fs</span>)</pre></body></html></div>
-<p><strong>File grid.zip has size 33.8 Mb</strong></p>
-<p><strong>File grid.db has size 54.3 Mb</strong></p>
+<p><strong>File grid.zip has size 35.6 Mb</strong></p>
+<p><strong>File grid.db has size 56.8 Mb</strong></p>
 </div>
   </div>
 

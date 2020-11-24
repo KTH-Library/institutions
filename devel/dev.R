@@ -53,6 +53,9 @@ pkgdown::build_site()
 
 use_build_ignore(files = "devel")
 
+# test building of vignettes without any downloaded data present
 unlink(institutions_cfg()$zip)
 unlink(institutions_cfg()$db)
 build_vignettes()
+
+use_github_action("check-standard")
