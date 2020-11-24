@@ -2,7 +2,7 @@
 title: "Geocoding usage example"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{geocode}
+  %\VignetteIndexEntry{Geocoding usage example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -24,7 +24,8 @@ Imports:
     stringr,
     tibble,
     zip,
-    jsonlite
+    jsonlite,
+    dbplyr
 Suggests: 
     knitr,
     rmarkdown,
