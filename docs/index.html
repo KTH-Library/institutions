@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -99,16 +99,22 @@
 <!-- badges: start -->
 
 <p>The goal of the R package <code>institutions</code> is to provide access to institutional data in R from the Global Research Identifier Database (GRID) which is available under the Creative Commons Public Domain 1.0 International licence (see <a href="https://grid.ac" class="uri">https://grid.ac</a>). This dataset is used by for example Altmetric, Dimensions, Figshare and others.</p>
+<p>This package also embeds data from from the Research Organization Registry Community (see <a href="https://ror.org/" class="uri">https://ror.org/</a>). All ROR IDs and metadata are provided under the Creative Commons CC0 1.0 Universal Public Domain Dedication. There are no restrictions on access to and use of ROR IDs and metadata. Some more information about this dataset can be found at: <a href="https://ror.org/facts/#core-components" class="uri">https://ror.org/facts/#core-components</a>. The <code>ror</code> dataset provides acccess to this data from within R; the <code>ror$ror_ids</code> table contains external identifers including, for all records, the GRID identifier. This identifier can be used to link to the ROR data with the GRID dataset exposed in this R package.</p>
+<div id="r-data-package-background" class="section level2">
+<h2 class="hasAnchor">
+<a href="#r-data-package-background" class="anchor"></a>R “data package” background</h2>
+<p>This R package is a kind of <a href="https://r-pkgs.org/data.html#data-data">“data package”</a> primarily intended to be used to provide reference data (from GRID and ROR) when used in other workflows. It is not a “data only package”, since it provides some functions that might also be useful when doing data wrangling against this reference data (mainly for supporting geocoding and full text search lookups).</p>
 <p>The package downloads some curated data from <a href="https://digitalscience.figshare.com/ndownloader/files/20151785" class="uri">https://digitalscience.figshare.com/ndownloader/files/20151785</a> and migrates this into a full text search indexed SQLite database residing locally. This FTS-enabled database is then exposed through a couple of functions by way of tibbles.</p>
 <p>The idea is to show how to provide access to a potentially provide access to a larger database and how to enable use of in-built full text search capabilities in SQLite by downloading potentially big remote data and installing it locally using <a href="https://rdrr.io/cran/rappdirs/"><code>rappdirs</code></a>.</p>
 <p>With this approach, the R package can stay small. There are a few minor practical drawbacks - mostly that your package will initially not work off-line until at least one initial successfull call to download the data has been made which would require a connection to the Internet.</p>
 <p>The upside is being able to tap into things like Full Text Search for datasets and with this approach the package can stay small and pass the CRAN checks without requiring exceptions, while the dataset size is only limited to 2TB (an SQLite limitation).</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version of institutions from <a href="https://github.com/KTH-Library/institutions">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">devtools</span>)
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"KTH-Library/institutions"</span>)</pre></div>
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"KTH-Library/institutions"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -151,7 +157,7 @@
 
 <span class="co"># get acronym data</span>
 <span class="fu"><a href="reference/institutions_table.html">institutions_table</a></span>(<span class="st">"acronyms"</span>)
-<span class="co">#&gt; # A tibble: 39,015 x 2</span>
+<span class="co">#&gt; # A tibble: 41,210 x 2</span>
 <span class="co">#&gt;    grid_id     acronym</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;  </span>
 <span class="co">#&gt;  1 grid.1001.0 ANU    </span>
@@ -164,7 +170,7 @@
 <span class="co">#&gt;  8 grid.1013.3 USYD   </span>
 <span class="co">#&gt;  9 grid.1016.6 CSIRO  </span>
 <span class="co">#&gt; 10 grid.1017.7 RMIT   </span>
-<span class="co">#&gt; # … with 39,005 more rows</span></pre></div>
+<span class="co">#&gt; # … with 41,200 more rows</span></pre></div>
 <p>Custom queries can be made:</p>
 <div class="sourceCode" id="cb5"><pre class="r">
 <span class="co"># a custom query, first get an id to work with</span>
@@ -210,6 +216,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/KTH-Library/institutions/actions"><img src="https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
 </div>

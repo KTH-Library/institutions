@@ -2,7 +2,7 @@
 title: "Institutions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{institutions}
+  %\VignetteIndexEntry{Institutions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,6 +20,8 @@ A short example to display a map of some institutions with "Stockholm" in their 
 library(institutions)
 library(dplyr, warn.conflicts = FALSE)
 library(leaflet)
+
+institutions_download()
 
 stockholm <- 
   institutions_search("Stockholm") %>%

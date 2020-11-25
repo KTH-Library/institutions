@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -88,7 +88,8 @@
 
       
 
-      </header><div class="row">
+      </header><script src="ror_files/header-attrs-2.5/header-attrs.js"></script><script src="ror_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="ror_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="ror_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Data from the Research Organization Registry Community</h1>
@@ -110,8 +111,10 @@
 <span class="co">#&gt;     filter, lag</span>
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span></pre></body></html></div>
-<p>A static dataset from April 2020 from the Research Organization Registry Community has been bundled in this R package.</p>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+
+<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span>()</pre></body></html></div>
+<p>A static dataset from October 2020 from the Research Organization Registry Community has been bundled in this R package.</p>
 <p>It provides GRID identifiers for research organizations and can therefore be used to link to the data otherwise provided through functions in this R package.</p>
 <p>Some examples of usage follow:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r">
@@ -131,41 +134,41 @@
 <span class="co">#&gt; Columns: 16</span>
 <span class="co">#&gt; $ id            &lt;chr&gt; "https://ror.org/026vcq606"</span>
 <span class="co">#&gt; $ status        &lt;chr&gt; "active"</span>
-<span class="co">#&gt; $ name          &lt;chr&gt; "Royal Institute of Technology"</span>
 <span class="co">#&gt; $ wikipedia_url &lt;chr&gt; "http://en.wikipedia.org/wiki/Royal_Institute_of_Techno…</span>
-<span class="co">#&gt; $ country_name  &lt;chr&gt; "Sweden"</span>
-<span class="co">#&gt; $ country_code  &lt;chr&gt; "SE"</span>
-<span class="co">#&gt; $ OrgRef        &lt;chr&gt; NA</span>
-<span class="co">#&gt; $ GRID          &lt;chr&gt; "grid.5037.1"</span>
+<span class="co">#&gt; $ name          &lt;chr&gt; "Royal Institute of Technology"</span>
+<span class="co">#&gt; $ Wikidata      &lt;chr&gt; NA</span>
 <span class="co">#&gt; $ ISNI          &lt;chr&gt; NA</span>
 <span class="co">#&gt; $ FundRef       &lt;chr&gt; NA</span>
-<span class="co">#&gt; $ Wikidata      &lt;chr&gt; NA</span>
+<span class="co">#&gt; $ OrgRef        &lt;chr&gt; NA</span>
+<span class="co">#&gt; $ GRID          &lt;chr&gt; "grid.5037.1"</span>
 <span class="co">#&gt; $ UCAS          &lt;lgl&gt; NA</span>
-<span class="co">#&gt; $ UKPRN         &lt;lgl&gt; NA</span>
 <span class="co">#&gt; $ HESA          &lt;lgl&gt; NA</span>
+<span class="co">#&gt; $ UKPRN         &lt;lgl&gt; NA</span>
 <span class="co">#&gt; $ CNRS          &lt;lgl&gt; NA</span>
 <span class="co">#&gt; $ LinkedIn      &lt;lgl&gt; NA</span>
+<span class="co">#&gt; $ country_code  &lt;chr&gt; "SE"</span>
+<span class="co">#&gt; $ country_name  &lt;chr&gt; "Sweden"</span>
 
 <span class="co"># what other identifiers are associated with this org?</span>
 <span class="no">ror</span>$<span class="no">ror_ids</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">id</span> <span class="kw">==</span> <span class="no">id_kth_ror</span>)
 <span class="co">#&gt; # A tibble: 5 x 3</span>
 <span class="co">#&gt;   id                        name     value           </span>
 <span class="co">#&gt;   &lt;chr&gt;                     &lt;chr&gt;    &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 https://ror.org/026vcq606 OrgRef   25609           </span>
-<span class="co">#&gt; 2 https://ror.org/026vcq606 GRID     grid.5037.1     </span>
-<span class="co">#&gt; 3 https://ror.org/026vcq606 ISNI     0000000121581746</span>
-<span class="co">#&gt; 4 https://ror.org/026vcq606 FundRef  501100004270    </span>
-<span class="co">#&gt; 5 https://ror.org/026vcq606 Wikidata Q854280</span>
+<span class="co">#&gt; 1 https://ror.org/026vcq606 Wikidata Q854280         </span>
+<span class="co">#&gt; 2 https://ror.org/026vcq606 ISNI     0000000121581746</span>
+<span class="co">#&gt; 3 https://ror.org/026vcq606 FundRef  501100004270    </span>
+<span class="co">#&gt; 4 https://ror.org/026vcq606 OrgRef   25609           </span>
+<span class="co">#&gt; 5 https://ror.org/026vcq606 GRID     grid.5037.1</span>
 
 <span class="co"># ROR child table entries for labels, aliases, acronyms, links and types?</span>
 
 <span class="co"># what labels are associated?</span>
 <span class="no">ror</span>$<span class="no">ror_labels</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">id</span> <span class="kw">==</span> <span class="no">id_kth_ror</span>)
 <span class="co">#&gt; # A tibble: 2 x 3</span>
-<span class="co">#&gt;   id                        label                                  iso639</span>
-<span class="co">#&gt;   &lt;chr&gt;                     &lt;chr&gt;                                  &lt;chr&gt; </span>
-<span class="co">#&gt; 1 https://ror.org/026vcq606 Kungliga Tekniska högskolan            sv    </span>
-<span class="co">#&gt; 2 https://ror.org/026vcq606 Kuninkaallinen teknillinen korkeakoulu fi</span>
+<span class="co">#&gt;   id                        iso639 label                                 </span>
+<span class="co">#&gt;   &lt;chr&gt;                     &lt;chr&gt;  &lt;chr&gt;                                 </span>
+<span class="co">#&gt; 1 https://ror.org/026vcq606 sv     Kungliga Tekniska högskolan           </span>
+<span class="co">#&gt; 2 https://ror.org/026vcq606 fi     Kuninkaallinen teknillinen korkeakoulu</span>
 
 <span class="co"># what aliases?</span>
 <span class="no">ror</span>$<span class="no">ror_aliases</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">id</span> <span class="kw">==</span> <span class="no">id_kth_ror</span>)
@@ -208,11 +211,11 @@
 <span class="co">#&gt; # A tibble: 5 x 2</span>
 <span class="co">#&gt;   types          n</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;int&gt;</span>
-<span class="co">#&gt; 1 Company    27681</span>
-<span class="co">#&gt; 2 Education  19275</span>
-<span class="co">#&gt; 3 Nonprofit  12466</span>
-<span class="co">#&gt; 4 Healthcare 12301</span>
-<span class="co">#&gt; 5 Facility    8448</span>
+<span class="co">#&gt; 1 Company    27855</span>
+<span class="co">#&gt; 2 Education  19536</span>
+<span class="co">#&gt; 3 Nonprofit  13437</span>
+<span class="co">#&gt; 4 Healthcare 12594</span>
+<span class="co">#&gt; 5 Facility    8582</span>
 
 <span class="co"># what are the most frequent language codes used for labels associated with orgs?</span>
 <span class="no">ror</span>$<span class="no">ror_labels</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">iso639</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">n</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fl">5</span>)
@@ -220,58 +223,59 @@
 <span class="co">#&gt; # Groups:   iso639 [5]</span>
 <span class="co">#&gt;   iso639     n</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;</span>
-<span class="co">#&gt; 1 zh      3501</span>
-<span class="co">#&gt; 2 ja      2850</span>
-<span class="co">#&gt; 3 fr      2330</span>
-<span class="co">#&gt; 4 ru      2067</span>
-<span class="co">#&gt; 5 de      1664</span>
+<span class="co">#&gt; 1 zh      3715</span>
+<span class="co">#&gt; 2 ja      2964</span>
+<span class="co">#&gt; 3 fr      2341</span>
+<span class="co">#&gt; 4 ru      2085</span>
+<span class="co">#&gt; 5 de      1690</span>
 
 <span class="co"># top 5 companies with many aliases</span>
 <span class="no">ror</span>$<span class="no">ror_aliases</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="no">aliases</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">n</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fl">5</span>)
 <span class="co">#&gt; # A tibble: 5 x 2</span>
-<span class="co">#&gt;   aliases                                                                      n</span>
-<span class="co">#&gt;   &lt;chr&gt;                                                                    &lt;int&gt;</span>
-<span class="co">#&gt; 1 Merck Sharp &amp; Dohme                                                         22</span>
-<span class="co">#&gt; 2 Centro Científico Tecnológico del Consejo Nacional de Investigaciones C…    10</span>
-<span class="co">#&gt; 3 International Business Machines Corporation                                 10</span>
-<span class="co">#&gt; 4 Biogen Idec                                                                  8</span>
-<span class="co">#&gt; 5 Hoffmann-La Roche                                                            8</span>
+<span class="co">#&gt;   aliases                                         n</span>
+<span class="co">#&gt;   &lt;chr&gt;                                       &lt;int&gt;</span>
+<span class="co">#&gt; 1 Merck Sharp &amp; Dohme                            22</span>
+<span class="co">#&gt; 2 Hoffmann-La Roche                              12</span>
+<span class="co">#&gt; 3 E. I. du Pont de Nemours and Company           11</span>
+<span class="co">#&gt; 4 International Business Machines Corporation    11</span>
+<span class="co">#&gt; 5 ASEA Brown Boveri                              10</span>
 
 <span class="co"># why does IBM have so many acronyms? seemingly because it is a multi-national corp.</span>
 <span class="no">ror</span>$<span class="no">ror_aliases</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">aliases</span> <span class="kw">==</span> <span class="st">"International Business Machines Corporation"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span>(<span class="no">ror</span>$<span class="no">ror_orgs</span>) <span class="kw">%&gt;%</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">name</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
 <span class="co">#&gt; Joining, by = "id"</span>
-<span class="co">#&gt; [1] "IBM (France), IBM (Germany), IBM (Belgium), IBM (Egypt), IBM (Denmark), IBM (Portugal), IBM (Czechia), IBM (Ireland), IBM (Brazil), IBM (Slovakia)"</span>
+<span class="co">#&gt; [1] "IBM (France), IBM (Germany), IBM (Belgium), IBM (India), IBM (Egypt), IBM (Denmark), IBM (Portugal), IBM (Czechia), IBM (Ireland), IBM (Brazil), IBM (Slovakia)"</span>
 
 <span class="co"># what is the most frequently used acronym and which orgs use this abbreviation for its name?</span>
 <span class="no">ror</span>$<span class="no">ror_acronyms</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="no">acronyms</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">n</span>))
-<span class="co">#&gt; # A tibble: 27,572 x 2</span>
+<span class="co">#&gt; # A tibble: 28,338 x 2</span>
 <span class="co">#&gt;    acronyms     n</span>
 <span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt;</span>
 <span class="co">#&gt;  1 CCC         38</span>
-<span class="co">#&gt;  2 AU          29</span>
-<span class="co">#&gt;  3 HCC         29</span>
-<span class="co">#&gt;  4 SCC         29</span>
-<span class="co">#&gt;  5 MU          28</span>
+<span class="co">#&gt;  2 AU          31</span>
+<span class="co">#&gt;  3 SCC         30</span>
+<span class="co">#&gt;  4 HCC         29</span>
+<span class="co">#&gt;  5 MU          29</span>
 <span class="co">#&gt;  6 MCC         27</span>
 <span class="co">#&gt;  7 BU          25</span>
-<span class="co">#&gt;  8 CMC         24</span>
+<span class="co">#&gt;  8 CMC         25</span>
 <span class="co">#&gt;  9 CRC         24</span>
-<span class="co">#&gt; 10 MSU         23</span>
-<span class="co">#&gt; # … with 27,562 more rows</span>
+<span class="co">#&gt; 10 GSK         23</span>
+<span class="co">#&gt; # … with 28,328 more rows</span>
 <span class="no">ror</span>$<span class="no">ror_acronyms</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">acronyms</span> <span class="kw">==</span> <span class="st">"CCC"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span>(<span class="no">ror</span>$<span class="no">ror_orgs</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">name</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
 <span class="co">#&gt; Joining, by = "id"</span>
 <span class="co">#&gt; [1] "Clatterbridge Cancer Centre NHS Foundation Trust, Committee on Climate Change, Camden County College, Capital Consulting Corporation (United States), IEA Clean Coal Centre, Colby Community College, Crile Carvey Consulting, Childhood Cancer Canada Foundation, Children's Cancer Center, Community Cancer Center, Capital Community College, Clatsop Community College, Central City Concern, Corning Community College, Cleveland Community College, California Coastal Commission, California Conservation Corps, Canola Council of Canada, Chinese Culture Center of San Francisco, Clearwater Christian College, Clackamas Community College, Clovis Community College, Coahoma Community College, Cumberland County College, Carolina Christian College, Consolidated Contractors Company (Greece), Community Care College, California Christian College, Craven Community College, Coffeyville Community College, Carteret Community College, Clinton Community College, Center for Community Change, Bowel Cancer UK, Carbohydrate Competence Center, Cambridge Centre, Sport Wales, Crichton Carbon Centre"</span>
 
 <span class="co"># some orgs have more than one link, seems to be duplicates?</span>
 <span class="no">ror</span>$<span class="no">ror_links</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">id</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="no">links</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">n</span> <span class="kw">&gt;</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()
-<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt; # A tibble: 5 x 3</span>
 <span class="co">#&gt;   id                        links                                  n</span>
 <span class="co">#&gt;   &lt;chr&gt;                     &lt;chr&gt;                              &lt;int&gt;</span>
 <span class="co">#&gt; 1 https://ror.org/01eea1w69 https://www.southernwater.co.uk/       2</span>
 <span class="co">#&gt; 2 https://ror.org/01s165k42 https://www.herffjones.com/            2</span>
 <span class="co">#&gt; 3 https://ror.org/02qj02q19 http://www.eis-africa.org/             2</span>
-<span class="co">#&gt; 4 https://ror.org/05r9c7f43 https://publichealth.berkeley.edu/     2</span>
+<span class="co">#&gt; 4 https://ror.org/03efxbk04 http://genosys.com/                    2</span>
+<span class="co">#&gt; 5 https://ror.org/05r9c7f43 https://publichealth.berkeley.edu/     2</span>
 <span class="no">ror</span>$<span class="no">ror_links</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">id</span> <span class="kw">==</span> <span class="st">"https://ror.org/01eea1w69"</span>)
 <span class="co">#&gt; # A tibble: 2 x 2</span>
 <span class="co">#&gt;   id                        links                           </span>
@@ -295,16 +299,16 @@
 <span class="co">#&gt; # Groups:   name [10]</span>
 <span class="co">#&gt;    name         n</span>
 <span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt;</span>
-<span class="co">#&gt;  1 GRID     97795</span>
-<span class="co">#&gt;  2 ISNI     44432</span>
-<span class="co">#&gt;  3 Wikidata 36916</span>
-<span class="co">#&gt;  4 OrgRef   15760</span>
-<span class="co">#&gt;  5 FundRef  12670</span>
-<span class="co">#&gt;  6 CNRS       825</span>
+<span class="co">#&gt;  1 GRID     98598</span>
+<span class="co">#&gt;  2 ISNI     45686</span>
+<span class="co">#&gt;  3 Wikidata 43842</span>
+<span class="co">#&gt;  4 OrgRef   15725</span>
+<span class="co">#&gt;  5 FundRef  12637</span>
+<span class="co">#&gt;  6 CNRS       823</span>
 <span class="co">#&gt;  7 UKPRN      175</span>
 <span class="co">#&gt;  8 HESA       171</span>
 <span class="co">#&gt;  9 UCAS       156</span>
-<span class="co">#&gt; 10 LinkedIn     7</span>
+<span class="co">#&gt; 10 LinkedIn     3</span>
 
 <span class="co"># which WikiData identifiers does a set of orgs have?</span>
 <span class="no">ids_wikidata</span> <span class="kw">&lt;-</span>
@@ -327,25 +331,25 @@
 <td align="left"><a href="https://www.wikidata.org/wiki/Q1095537">Q1095537</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://www.wikidata.org/wiki/Q6786826">Q6786826</a></td>
+<td align="left"><a href="https://www.wikidata.org/wiki/Q5260389">Q5260389</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://www.wikidata.org/wiki/Q7529574">Q7529574</a></td>
-</tr>
-<tr class="odd">
 <td align="left"><a href="https://www.wikidata.org/wiki/Q56612600">Q56612600</a></td>
 </tr>
+<tr class="odd">
+<td align="left"><a href="https://www.wikidata.org/wiki/Q7529574">Q7529574</a></td>
+</tr>
 <tr class="even">
-<td align="left"><a href="https://www.wikidata.org/wiki/Q5260389">Q5260389</a></td>
+<td align="left"><a href="https://www.wikidata.org/wiki/Q6786826">Q6786826</a></td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="https://www.wikidata.org/wiki/Q35794">Q35794</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://www.wikidata.org/wiki/Q10899168">Q10899168</a></td>
+<td align="left"><a href="https://www.wikidata.org/wiki/Q24679079">Q24679079</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://www.wikidata.org/wiki/Q24679079">Q24679079</a></td>
+<td align="left"><a href="https://www.wikidata.org/wiki/Q10899168">Q10899168</a></td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://www.wikidata.org/wiki/Q181892">Q181892</a></td>

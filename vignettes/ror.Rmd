@@ -17,9 +17,12 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(institutions)
 library(dplyr)
+
+institutions_download()
+
 ```
 
-A static dataset from April 2020 from the Research Organization Registry Community has been bundled in this R package.
+A static dataset from October 2020 from the Research Organization Registry Community has been bundled in this R package.
 
 It provides GRID identifiers for research organizations and can therefore be used to link to the data otherwise provided through functions in this R package.
 

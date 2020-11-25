@@ -43,7 +43,7 @@
 #' @keywords package
 NULL
 
-#' Research Organization Registry dataset from April 2020
+#' Research Organization Registry dataset
 #'
 #' A dataset containing data from the Research Organization Registry Community; see \url{https://ror.org/}.
 #'
@@ -52,6 +52,8 @@ NULL
 #' There are no restrictions on access to and use of ROR IDs and metadata.
 #'
 #' Some more information about this dataset can be found at: \url{https://ror.org/facts/#core-components}
+#'
+#' This dataset was prepared using the script at data-raw/ror.R
 #'
 #' @format a list of data frames, where ror_orgs is the core table and child tables
 #' are ror_labels, ror_aliases, ror_acronyms, ror_links, ror_types and ror_ids
@@ -62,5 +64,5 @@ NULL
 #'
 #' This identifier can be used to link to the GRID dataset exposed in this R package.
 #'
-#' @source \url{https://ndownloader.figshare.com/files/22204641}
+#' @source \url{https://ndownloader.figshare.com/files/25186040}
 "ror"

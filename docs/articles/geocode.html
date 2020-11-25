@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -88,7 +88,8 @@
 
       
 
-      </header><div class="row">
+      </header><script src="geocode_files/header-attrs-2.5/header-attrs.js"></script><script src="geocode_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="geocode_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="geocode_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Geocoding usage example</h1>
@@ -101,7 +102,8 @@
 
     
     
-<p>Two convenience functions are provided that allows address information to be used as basis for a geocoding lookup that can return coordinates. Let’s say address information is provided for an institution or institute that is not present in the GRID database. The following example shows how these geocoding functions can be used to look up geocoding information:</p>
+<p>Two convenience functions are provided that allows address information to be used as basis for a geocoding lookup that can return coordinates. Let’s say address information is provided for an institution or institute that is not present in the GRID database.</p>
+<p>The following example shows how these geocoding functions can be used to look up geocoding information:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">institutions</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
 <span class="co">#&gt; </span>
@@ -113,15 +115,19 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
+<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span>()
 
 <span class="co"># using Nominatim API (Open Street Map)</span>
 <span class="no">osm</span> <span class="kw">&lt;-</span>
   <span class="fu"><a href="../reference/geocode_nominatim.html">geocode_nominatim</a></span>(<span class="st">"Kungliga Tekniska Högskolan"</span>)
 
-<span class="co"># coordinates etc</span>
-<span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
+<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">osm</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
+  <span class="co"># coordinates etc</span>
+  <span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
+  <span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">lat</span>, <span class="no">lon</span>)
+}
 <span class="co">#&gt; Rows: 1</span>
-<span class="co">#&gt; Columns: 24</span>
+<span class="co">#&gt; Columns: 23</span>
 <span class="co">#&gt; $ place_id              &lt;int&gt; 162168231</span>
 <span class="co">#&gt; $ licence               &lt;chr&gt; "Data © OpenStreetMap contributors, ODbL 1.0. h…</span>
 <span class="co">#&gt; $ osm_type              &lt;chr&gt; "way"</span>
@@ -133,38 +139,38 @@
 <span class="co">#&gt; $ class                 &lt;chr&gt; "amenity"</span>
 <span class="co">#&gt; $ type                  &lt;chr&gt; "university"</span>
 <span class="co">#&gt; $ importance            &lt;dbl&gt; 0.7991388</span>
-<span class="co">#&gt; $ icon                  &lt;chr&gt; "https://nominatim.openstreetmap.org/images/map…</span>
+<span class="co">#&gt; $ icon                  &lt;chr&gt; "https://nominatim.openstreetmap.org/ui/mapicon…</span>
 <span class="co">#&gt; $ address.amenity       &lt;chr&gt; "Kungliga Tekniska högskolan"</span>
 <span class="co">#&gt; $ address.road          &lt;chr&gt; "Norrtullstunneln"</span>
 <span class="co">#&gt; $ address.city_block    &lt;chr&gt; "Kattrumpstullen"</span>
 <span class="co">#&gt; $ address.suburb        &lt;chr&gt; "Norra Djurgården"</span>
 <span class="co">#&gt; $ address.city_district &lt;chr&gt; "Norrmalms stadsdelsområde"</span>
 <span class="co">#&gt; $ address.city          &lt;chr&gt; "Stockholm"</span>
-<span class="co">#&gt; $ address.municipality  &lt;chr&gt; "Stockholms kommun"</span>
-<span class="co">#&gt; $ address.state         &lt;chr&gt; "Stockholms län"</span>
+<span class="co">#&gt; $ address.county        &lt;chr&gt; "Stockholms län"</span>
 <span class="co">#&gt; $ address.region        &lt;chr&gt; "Svealand"</span>
 <span class="co">#&gt; $ address.postcode      &lt;chr&gt; "114 19"</span>
 <span class="co">#&gt; $ address.country       &lt;chr&gt; "Sverige"</span>
 <span class="co">#&gt; $ address.country_code  &lt;chr&gt; "se"</span>
-<span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">lat</span>, <span class="no">lon</span>)
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;   lat         lon              </span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;            </span>
 <span class="co">#&gt; 1 59.34986645 18.07063213298418</span>
 
-<span class="co"># using MapQuest API</span>
+<span class="co"># using MapQuest API, requires .Renviron with MAPQUEST_API_KEY env set</span>
+<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"MAPQUEST_API_KEY"</span>)) <span class="kw">&gt;</span> <span class="fl">0</span>) {
+  <span class="no">mq</span> <span class="kw">&lt;-</span>
+    <span class="fu"><a href="../reference/geocode_mapquest.html">geocode_mapquest</a></span>(
+      <span class="kw">street</span> <span class="kw">=</span> <span class="st">"Kungliga Tekniska Hogskolan"</span>,
+      <span class="kw">zip</span> <span class="kw">=</span> <span class="st">"100 44"</span>,
+      <span class="kw">city</span> <span class="kw">=</span> <span class="st">"Stockholm"</span>)
 
-<span class="no">mq</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="../reference/geocode_mapquest.html">geocode_mapquest</a></span>(
-    <span class="kw">street</span> <span class="kw">=</span> <span class="st">"Kungliga Tekniska Högskolan"</span>,
-    <span class="kw">zip</span> <span class="kw">=</span> <span class="st">"100 44"</span>,
-    <span class="kw">city</span> <span class="kw">=</span> <span class="st">"Stockholm"</span>)
+  <span class="co"># coordinates etc</span>
+  <span class="no">mq</span> <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"admin"</span>)), <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/iconv.html">iconv</a></span>(<span class="no">x</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="st">"iso-8859-1"</span>)) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(<span class="fl">2</span>) <span class="kw">%&gt;%</span>  <span class="co"># use only the second result</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
 
-<span class="co"># coordinates etc</span>
-<span class="no">mq</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"admin"</span>)), <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/iconv.html">iconv</a></span>(<span class="no">x</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="st">"iso-8859-1"</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(<span class="fl">2</span>) <span class="kw">%&gt;%</span>  <span class="co"># use only the second result</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
+}
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 24</span>
 <span class="co">#&gt; $ street             &lt;chr&gt; ""</span>
