@@ -1,14 +1,15 @@
 #' Download the GRID dataset and install the local SQLite3 database
 #'
 #'@param overwrite logical indicating if local db should be overwritten
+#'@param cfg the config to use when downloading, by default institutions_cfg()
 #'@return logical indicating if the db exists locally, invisibly
 #'@importFrom utils download.file
 #'@export
-institutions_download <- function(overwrite = FALSE) {
+institutions_download <- function(overwrite = FALSE, cfg = institutions_cfg()) {
 
   stopifnot(is.logical(overwrite))
 
-  cfg <- institutions_cfg()
+  #cfg <- institutions_cfg()
 
   if (!dir.exists(dirname(cfg$zip)))
     dir.create(dirname(cfg$zip), recursive = TRUE)
@@ -68,7 +69,13 @@ create_db <- function(db, src_zip) {
   }
 
   migrate_table <- function(src_zip, zipcsv, con) {
-    df <- read_csv(unz(src_zip, zipcsv), col_types = cols())
+    df <- read_csv(unz(src_zip, zipcsv),
+      col_types = cols(), na = "", guess_max = 1e5, show_col_types = FALSE)
+    probs <- readr::problems(df)
+    if (nrow(probs) > 0) {
+      warning("Parsing issues found for ", zipcsv, " in ", src_zip)
+      print(probs)
+    }
     dbWriteTable(con, zipcsv_table(zipcsv), df, overwrite = TRUE)
     #    copy_to(con, df, name = zipcsv_table(zipcsv), overwrite = TRUE)
   }
