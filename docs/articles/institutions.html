@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KTH-Library/institutions/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -88,11 +88,10 @@
 
       
 
-      </header><script src="institutions_files/header-attrs-2.5/header-attrs.js"></script><script src="institutions_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="institutions_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="institutions_files/anchor-sections-1.0/anchor-sections.js"></script><script src="institutions_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="institutions_files/jquery-1.12.4/jquery.min.js"></script><link href="institutions_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+      </header><script src="institutions_files/header-attrs-2.11/header-attrs.js"></script><script src="institutions_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="institutions_files/jquery-1.12.4/jquery.min.js"></script><link href="institutions_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="institutions_files/leaflet-1.3.1/leaflet.js"></script><link href="institutions_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="institutions_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script><script src="institutions_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="institutions_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="institutions_files/leaflet-binding-2.0.3/leaflet.js"></script><div class="row">
+<script src="institutions_files/proj4-2.6.2/proj4.min.js"></script><script src="institutions_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="institutions_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="institutions_files/leaflet-binding-2.0.4.1/leaflet.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Institutions</h1>
@@ -106,24 +105,25 @@
     
     
 <p>A short example to display a map of some institutions with “Stockholm” in their names and located in Sweden:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">institutions</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>, <span class="kw">warn.conflicts</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">leaflet</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions">institutions</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span>()
+<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="no">stockholm</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="../reference/institutions_search.html">institutions_search</a></span>(<span class="st">"Stockholm"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">country_code</span> <span class="kw">==</span> <span class="st">"SE"</span>)
+<span class="va">stockholm</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="../reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Stockholm"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country_code</span> <span class="op">==</span> <span class="st">"SE"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span>(<span class="no">stockholm</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span>(
-    <span class="kw">urlTemplate</span> <span class="kw">=</span> <span class="st">"//{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"</span>,
-    <span class="kw">options</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">tileOptions</a></span>(<span class="kw">maxZoom</span> <span class="kw">=</span> <span class="fl">18</span>), <span class="kw">group</span> <span class="kw">=</span> <span class="st">"Gray"</span>, <span class="kw">layerId</span> <span class="kw">=</span> <span class="st">"test"</span>
-  ) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span>(<span class="kw">lng</span> <span class="kw">=</span> ~<span class="no">lng</span>, <span class="kw">lat</span> <span class="kw">=</span> ~<span class="no">lat</span>, <span class="kw">popup</span> <span class="kw">=</span> ~<span class="no">institutes</span>, <span class="kw">label</span> <span class="kw">=</span> ~<span class="no">institutes</span>)</pre></body></html></div>
-<div id="htmlwidget-71d538806340b0ebfd5c" style="width:672px;height:672px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-71d538806340b0ebfd5c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png","test","Gray",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false}]},{"method":"addMarkers","args":[[59.365278,59.35,59.3333,59.35063,59.334366,59.328729,59.405582,59.357156,59.309947,59.341667,59.330337,59.339838,59.335156,59.336089,59.315643,59.346111,59.369558,59.339477,59.328653,59.334733,59.3382272,59.344836,59.350327,59.218544],[18.058333,18.066667,18.022637,18.067572,18.097031,18.04005,17.945062,18.05503,18.056323,18.057222,18.058493,18.058101,18.096378,17.926908,18.068438,18.03637,18.013713,18.101135,18.044867,18.095094,18.0352106,18.082015,18.072782,17.942025],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Stockholm University","Stockholm Municipality","Beroendecentrum Stockholm","Stockholm Makerspace","Stockholm Environment Institute","Stockholm County Council","Stockholm Innovation & Growth","Stockholm Resilience Centre","Stockholm South General Hospital","Stockholm School of Economics","Stockholm Science City Foundation","Stockholm School of Entrepreneurship","Stockholm International Water Institute","Stockholm School of Theology","Stockholm Health Care Services","Stockholm Gerontology Research Center Foundation","Stockholm International Peace Research Institute","Stockholm Academy of Dramatic Arts","County Administrative Board of Stockholm","Stockholm University of the Arts","Stockholm Institute of Communication Science","Royal College of Music in Stockholm","University College of Opera in Stockholm","Stockholm University College of Music Education"],null,null,null,["Stockholm University","Stockholm Municipality","Beroendecentrum Stockholm","Stockholm Makerspace","Stockholm Environment Institute","Stockholm County Council","Stockholm Innovation &amp; Growth","Stockholm Resilience Centre","Stockholm South General Hospital","Stockholm School of Economics","Stockholm Science City Foundation","Stockholm School of Entrepreneurship","Stockholm International Water Institute","Stockholm School of Theology","Stockholm Health Care Services","Stockholm Gerontology Research Center Foundation","Stockholm International Peace Research Institute","Stockholm Academy of Dramatic Arts","County Administrative Board of Stockholm","Stockholm University of the Arts","Stockholm Institute of Communication Science","Royal College of Music in Stockholm","University College of Opera in Stockholm","Stockholm University College of Music Education"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[59.218544,59.405582],"lng":[17.926908,18.101135]}},"evals":[],"jsHooks":[]}</script>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">stockholm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span>
+    urlTemplate <span class="op">=</span> <span class="st">"//{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"</span>, 
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">tileOptions</a></span><span class="op">(</span>maxZoom <span class="op">=</span> <span class="fl">18</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Gray"</span>, layerId <span class="op">=</span> <span class="st">"test"</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span>lng <span class="op">=</span> <span class="op">~</span><span class="va">lng</span>, lat <span class="op">=</span> <span class="op">~</span><span class="va">lat</span>, popup <span class="op">=</span> <span class="op">~</span><span class="va">institutes</span>, label <span class="op">=</span> <span class="op">~</span><span class="va">institutes</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-4535932a5a096f3ebab1" style="width:672px;height:672px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4535932a5a096f3ebab1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png","test","Gray",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false}]},{"method":"addMarkers","args":[[59.365278,59.35,59.3333,59.35063,59.3044071,59.334366,59.328729,59.405582,59.357156,59.309947,59.341667,59.330337,59.339838,59.335156,59.336089,59.315643,59.346111,59.369558,59.339477,59.328653,59.334733,59.3382272,59.344836,59.350327,59.218544],[18.058333,18.066667,18.022637,18.067572,18.091762,18.097031,18.04005,17.945062,18.05503,18.056323,18.057222,18.058493,18.058101,18.096378,17.926908,18.068438,18.03637,18.013713,18.101135,18.044867,18.095094,18.0352106,18.082015,18.072782,17.942025],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Stockholm University","Stockholm Municipality","Beroendecentrum Stockholm","Stockholm Makerspace","Stockholm IVF","Stockholm Environment Institute","Stockholm County Council","Stockholm Innovation & Growth","Stockholm Resilience Centre","Stockholm South General Hospital","Stockholm School of Economics","Stockholm Science City Foundation","Stockholm School of Entrepreneurship","Stockholm International Water Institute","Stockholm School of Theology","Stockholm Health Care Services","Stockholm Gerontology Research Center Foundation","Stockholm International Peace Research Institute","Stockholm Academy of Dramatic Arts","County Administrative Board of Stockholm","Stockholm University of the Arts","Stockholm Institute of Communication Science","Royal College of Music in Stockholm","University College of Opera in Stockholm","Stockholm University College of Music Education"],null,null,null,["Stockholm University","Stockholm Municipality","Beroendecentrum Stockholm","Stockholm Makerspace","Stockholm IVF","Stockholm Environment Institute","Stockholm County Council","Stockholm Innovation &amp; Growth","Stockholm Resilience Centre","Stockholm South General Hospital","Stockholm School of Economics","Stockholm Science City Foundation","Stockholm School of Entrepreneurship","Stockholm International Water Institute","Stockholm School of Theology","Stockholm Health Care Services","Stockholm Gerontology Research Center Foundation","Stockholm International Peace Research Institute","Stockholm Academy of Dramatic Arts","County Administrative Board of Stockholm","Stockholm University of the Arts","Stockholm Institute of Communication Science","Royal College of Music in Stockholm","University College of Opera in Stockholm","Stockholm University College of Music Education"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[59.218544,59.405582],"lng":[17.926908,18.101135]}},"evals":[],"jsHooks":[]}</script>
 </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -139,7 +139,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
