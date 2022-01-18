@@ -10,8 +10,10 @@ library(tidyr)
 # - Find a Dowload button on that page and copy the URL that it leads to
 # On 24 Nov 2020, the latest such link was:
 # - https://ndownloader.figshare.com/files/25186040
+# On 18 Jan 2022, the latest such link was:
+# - https://zenodo.org/record/5534443/files/2021-09-23-ror-data.zip?download=1
 
-tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/25186040") {
+tidy_rorzip <- function(url = "https://zenodo.org/record/5534443/files/2021-09-23-ror-data.zip?download=1") {
 
   t0 <- Sys.time()
   message("Downloading the ROR data, patience please (tidying the data takes time), starting at: ", t0)
@@ -19,27 +21,29 @@ tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/25186040")
   rorzip <- file.path(tempdir(), "ror.zip")
   url %>% download.file(destfile = rorzip)
 
+  fn <- zip_list(rorzip) %>% filter(grepl("\\.json$", filename)) %>% pull(filename)
+
   message("Reading and parsing the json in the zip (flattening and simplyfying w jsonlite), patience pls...")
   ror <- as_tibble(
-    fromJSON(txt = unz(description = rorzip, filename = "ror.json"),
+    fromJSON(txt = unz(description = rorzip, filename = fn),
        simplifyDataFrame = TRUE, flatten = TRUE)
     )
 
   message("Tidying the data into tabular tables (rectangular one-to-one and one-to-many data)")
 
   # extract non-list columns (one-to-one) in core table
-
   message("Generating core table...")
 
   orgs <-
     ror %>%
-    select_if(.predicate = function(x) !is.list(x))
+    select_if(.predicate = function(x) !is.list(x)) %>%
+    as_tibble
 
   # extract some specific one-to-many relationships into child tables
 
   message("Generating child tables...")
 
-  otm_cols <- c("labels", "aliases", "acronyms", "links", "types")
+  otm_cols <- c("aliases", "acronyms", "links", "types")
 
   unnest_col <- function(x)
     ror %>% select(id, x) %>% unnest(cols = -"id")
@@ -89,6 +93,7 @@ tidy_rorzip <- function(url = "https://ndownloader.figshare.com/files/25186040")
     )
 }
 
-ror <- tidy_rorzip("https://ndownloader.figshare.com/files/25186040")
+ror <- tidy_rorzip()
 
 usethis::use_data(ror, overwrite = TRUE)
+tools::resaveRdaFiles("data/ror.rda", compress="xz")

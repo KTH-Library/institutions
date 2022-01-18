@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KTH-Library/institutions/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -88,8 +88,7 @@
 
       
 
-      </header><script src="meta_files/header-attrs-2.5/header-attrs.js"></script><script src="meta_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="meta_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="meta_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="meta_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Description of the GRID db</h1>
@@ -106,32 +105,33 @@
 <h2 class="hasAnchor">
 <a href="#database-content" class="anchor"></a>Database content</h2>
 <p>The tables in the database have the following table names, column names and row and column counts:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">institutions</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>, <span class="kw">warn.conflicts</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">purrr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions">institutions</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span>()
+<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># fcn to describe a table</span>
 
-<span class="no">desc_table</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>)
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(
-    <span class="kw">tablename</span> <span class="kw">=</span> <span class="no">x</span>,
-    <span class="kw">rowcount</span> <span class="kw">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span>(<span class="no">x</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(),
-    <span class="kw">colcount</span> <span class="kw">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span>(<span class="no">x</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(),
-    <span class="kw">colnames</span> <span class="kw">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span>(<span class="no">x</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">collapse</span> <span class="kw">=</span> <span class="st">", "</span>)
-  )
+<span class="va">desc_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    tablename <span class="op">=</span> <span class="va">x</span>,
+    rowcount <span class="op">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>,
+    colcount <span class="op">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="op">)</span>,
+    colnames <span class="op">=</span> <span class="fu"><a href="../reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span>collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span>
+  <span class="op">)</span>
 
 <span class="co"># iterate over existing tables and display results</span>
 
-<span class="no">tables</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/institutions_tables.html">institutions_tables</a></span>()
+<span class="va">tables</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/institutions_tables.html">institutions_tables</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="no">desc</span> <span class="kw">&lt;-</span>
- <span class="no">tables</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="no">desc_table</span>) <span class="kw">%&gt;%</span>
- <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">rowcount</span>))
+<span class="va">desc</span> <span class="op">&lt;-</span>
+ <span class="va">tables</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">desc_table</span><span class="op">)</span> <span class="op">%&gt;%</span>
+ <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">rowcount</span><span class="op">)</span><span class="op">)</span>
 
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">desc</span>)</pre></body></html></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">desc</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="4%">
@@ -148,67 +148,67 @@
 <tbody>
 <tr class="odd">
 <td align="left">external_ids</td>
-<td align="right">216534</td>
+<td align="right">229321</td>
 <td align="right">3</td>
-<td align="left">grid_id, external_id_type, external_id</td>
+<td align="left">grid.id, external_id_type, external_id</td>
 </tr>
 <tr class="even">
 <td align="left">addresses</td>
-<td align="right">98598</td>
+<td align="right">102392</td>
 <td align="right">14</td>
 <td align="left">grid_id, line_1, line_2, line_3, lat, lng, postcode, primary, city, state, state_code, country, country_code, geonames_city_id</td>
 </tr>
 <tr class="odd">
 <td align="left">grid</td>
-<td align="right">98598</td>
+<td align="right">102392</td>
 <td align="right">5</td>
 <td align="left">ID, Name, City, State, Country</td>
 </tr>
 <tr class="even">
 <td align="left">institutes</td>
-<td align="right">98598</td>
+<td align="right">102392</td>
 <td align="right">5</td>
 <td align="left">grid_id, name, wikipedia_url, email_address, established</td>
 </tr>
 <tr class="odd">
 <td align="left">types</td>
-<td align="right">98574</td>
+<td align="right">102362</td>
 <td align="right">2</td>
 <td align="left">grid_id, type</td>
 </tr>
 <tr class="even">
 <td align="left">links</td>
-<td align="right">96609</td>
+<td align="right">100857</td>
 <td align="right">2</td>
 <td align="left">grid_id, link</td>
 </tr>
 <tr class="odd">
 <td align="left">acronyms</td>
-<td align="right">41210</td>
+<td align="right">42840</td>
 <td align="right">2</td>
 <td align="left">grid_id, acronym</td>
 </tr>
 <tr class="even">
 <td align="left">relationships</td>
-<td align="right">37902</td>
+<td align="right">40868</td>
 <td align="right">3</td>
 <td align="left">grid_id, relationship_type, related_grid_id</td>
 </tr>
 <tr class="odd">
 <td align="left">labels</td>
-<td align="right">25726</td>
+<td align="right">27092</td>
 <td align="right">3</td>
 <td align="left">grid_id, iso639, label</td>
 </tr>
 <tr class="even">
 <td align="left">aliases</td>
-<td align="right">23564</td>
+<td align="right">24225</td>
 <td align="right">2</td>
 <td align="left">grid_id, alias</td>
 </tr>
 <tr class="odd">
 <td align="left">geonames</td>
-<td align="right">14492</td>
+<td align="right">15007</td>
 <td align="right">14</td>
 <td align="left">geonames_city_id, city, nuts_level1_code, nuts_level1_name, nuts_level2_code, nuts_level2_name, nuts_level3_code, nuts_level3_name, geonames_admin1_code, geonames_admin1_name, geonames_admin1_ascii_name, geonames_admin2_code, geonames_admin2_name, geonames_admin2_ascii_name</td>
 </tr>
@@ -220,18 +220,19 @@
 <h2 class="hasAnchor">
 <a href="#size-on-disk" class="anchor"></a>Size on disk</h2>
 <p>The size on disk for some of the generated files (the SQLite db is larger than the zipped CSVs downloaded due to the Full Text Search tables that are generated and added to the database):</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">
-<span class="no">cfg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/institutions_cfg.html">institutions_cfg</a></span>()
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">cfg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/institutions_cfg.html">institutions_cfg</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="no">print_fs</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"File %s has size %s"</span>, <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span>(<span class="no">x</span>),
-          <span class="kw pkg">utils</span><span class="kw ns">:::</span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">format.object_size</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span>(<span class="no">x</span>)$<span class="no">size</span>, <span class="st">"auto"</span>))
+<span class="va">print_fs</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"File %s has size %s"</span>, <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, 
+          <span class="fu">utils</span><span class="fu">:::</span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">format.object_size</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">size</span>, <span class="st">"auto"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="no">files</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">cfg</span>$<span class="no">zip</span>, <span class="no">cfg</span>$<span class="no">db</span>)
+<span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">cfg</span><span class="op">$</span><span class="va">zip</span>, <span class="va">cfg</span><span class="op">$</span><span class="va">db</span><span class="op">)</span>
 
-<span class="no">sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(<span class="no">files</span>, <span class="no">print_fs</span>)</pre></body></html></div>
-<p><strong>File grid.zip has size 35.6 Mb</strong></p>
-<p><strong>File grid.db has size 56.8 Mb</strong></p>
+<span class="va">sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span><span class="op">(</span><span class="va">files</span>, <span class="va">print_fs</span><span class="op">)</span></code></pre></div>
+<p><strong>File grid.zip has size 37.3 Mb</strong></p>
+<p><strong>File grid.db has size 58.7 Mb</strong></p>
 </div>
   </div>
 
@@ -250,7 +251,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

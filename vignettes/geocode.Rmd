@@ -21,6 +21,7 @@ The following example shows how these geocoding functions can be used to look up
 ```{r setup}
 library(institutions)
 library(dplyr)
+library(curl)
 
 institutions_download()
 

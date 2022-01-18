@@ -14,7 +14,7 @@ This dataset is licensed under the Creative Commons Public Domain 1.0 Internatio
 It is used by for example Altmetric, Dimensions, Figshare and others.
 
 A local SQLite db is created based on a distribution of institutional data from
-\url{https://digitalscience.figshare.com/ndownloader/files/20151785}
+\url{https://ndownloader.figshare.com/files/30895309}
 
 It is created by extending the remotely distributed dataset to support
 Full Text Search and this extended database is then exposed in through this

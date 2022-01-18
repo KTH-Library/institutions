@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -42,7 +42,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -77,7 +77,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KTH-Library/institutions/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -113,20 +113,22 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version of institutions from <a href="https://github.com/KTH-Library/institutions">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">devtools</span>)
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"KTH-Library/institutions"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"KTH-Library/institutions"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to get started:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">institutions</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions">institutions</a></span><span class="op">)</span>
 
 <span class="co"># on first run, make sure to download the data which will generate the SQLite db </span>
-<span class="fu"><a href="reference/institutions_download.html">institutions_download</a></span>()
+<span class="fu"><a href="reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># where are the data files - remotely and locally?</span>
-<span class="fu"><a href="reference/institutions_cfg.html">institutions_cfg</a></span>()
+<span class="fu"><a href="reference/institutions_cfg.html">institutions_cfg</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; $src_url</span>
 <span class="co">#&gt; [1] "https://digitalscience.figshare.com/ndownloader/files/20151785"</span>
 <span class="co">#&gt; </span>
@@ -137,26 +139,28 @@
 <span class="co">#&gt; [1] "/home/markus/.config/institutions/grid.zip"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $db</span>
-<span class="co">#&gt; [1] "/home/markus/.config/institutions/grid.db"</span></pre></div>
+<span class="co">#&gt; [1] "/home/markus/.config/institutions/grid.db"</span></code></pre></div>
 <p>To do a full text search for institutional addresses and locations (see <a href="https://www.sqlite.org/fts5.html#full_text_query_syntax">details on FTS syntax here</a>):</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># do a full text search for institutions matching the search query "Royal AND Technology</span>
-<span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span>(<span class="st">"Royal AND Technology"</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># do a full text search for institutions matching the search query "Royal AND Technology</span>
+<span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal AND Technology"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 15</span>
 <span class="co">#&gt;   institutes grid_id line_1 line_2 line_3   lat   lng postcode primary city </span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;</span>
 <span class="co">#&gt; 1 Royal Ins… grid.5… &lt;NA&gt;       NA     NA  59.3  18.1 &lt;NA&gt;           0 Stoc…</span>
 <span class="co">#&gt; # … with 5 more variables: state &lt;chr&gt;, state_code &lt;chr&gt;, country &lt;chr&gt;,</span>
-<span class="co">#&gt; #   country_code &lt;chr&gt;, geonames_city_id &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   country_code &lt;chr&gt;, geonames_city_id &lt;dbl&gt;</span></code></pre></div>
 <p>All tables in the database can be enumerated and accessed individually:</p>
-<div class="sourceCode" id="cb4"><pre class="r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># enumerate all db tables</span>
-<span class="fu"><a href="reference/institutions_tables.html">institutions_tables</a></span>()
+<span class="fu"><a href="reference/institutions_tables.html">institutions_tables</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "acronyms"      "addresses"     "aliases"       "external_ids" </span>
 <span class="co">#&gt;  [5] "geonames"      "grid"          "institutes"    "labels"       </span>
 <span class="co">#&gt;  [9] "links"         "relationships" "types"</span>
 
 <span class="co"># get acronym data</span>
-<span class="fu"><a href="reference/institutions_table.html">institutions_table</a></span>(<span class="st">"acronyms"</span>)
+<span class="fu"><a href="reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="st">"acronyms"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 41,210 x 2</span>
 <span class="co">#&gt;    grid_id     acronym</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;  </span>
@@ -170,20 +174,21 @@
 <span class="co">#&gt;  8 grid.1013.3 USYD   </span>
 <span class="co">#&gt;  9 grid.1016.6 CSIRO  </span>
 <span class="co">#&gt; 10 grid.1017.7 RMIT   </span>
-<span class="co">#&gt; # … with 41,200 more rows</span></pre></div>
+<span class="co">#&gt; # … with 41,200 more rows</span></code></pre></div>
 <p>Custom queries can be made:</p>
-<div class="sourceCode" id="cb5"><pre class="r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># a custom query, first get an id to work with</span>
-<span class="no">id</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span>(<span class="st">"Royal Institute of Technology"</span>)$<span class="no">grid_id</span>
+<span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal Institute of Technology"</span><span class="op">)</span><span class="op">$</span><span class="va">grid_id</span>
 
 <span class="co"># assemble some sql using that id</span>
-<span class="no">sql</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span>(<span class="st">"select * from links where grid_id = '%s'"</span>, <span class="no">id</span>)
+<span class="va">sql</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"select * from links where grid_id = '%s'"</span>, <span class="va">id</span><span class="op">)</span>
 
-<span class="fu"><a href="reference/institutions_query.html">institutions_query</a></span>(<span class="no">sql</span>)
+<span class="fu"><a href="reference/institutions_query.html">institutions_query</a></span><span class="op">(</span><span class="va">sql</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;   grid_id     link                </span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;               </span>
-<span class="co">#&gt; 1 grid.5037.1 http://www.kth.se/en</span></pre></div>
+<span class="co">#&gt; 1 grid.5037.1 http://www.kth.se/en</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -228,7 +233,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

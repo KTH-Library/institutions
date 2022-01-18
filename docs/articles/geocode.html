@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/KTH-Library/institutions/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -88,8 +88,7 @@
 
       
 
-      </header><script src="geocode_files/header-attrs-2.5/header-attrs.js"></script><script src="geocode_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="geocode_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="geocode_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="geocode_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Geocoding usage example</h1>
@@ -104,8 +103,9 @@
     
 <p>Two convenience functions are provided that allows address information to be used as basis for a geocoding lookup that can return coordinates. Let’s say address information is provided for an institution or institute that is not present in the GRID database.</p>
 <p>The following example shows how these geocoding functions can be used to look up geocoding information:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">institutions</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions">institutions</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -114,63 +114,65 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeroen/curl">curl</a></span><span class="op">)</span>
+<span class="co">#&gt; Using libcurl 7.58.0 with OpenSSL/1.1.1</span>
 
-<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span>()
+<span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># using Nominatim API (Open Street Map)</span>
-<span class="no">osm</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="../reference/geocode_nominatim.html">geocode_nominatim</a></span>(<span class="st">"Kungliga Tekniska Högskolan"</span>)
+<span class="va">osm</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="../reference/geocode_nominatim.html">geocode_nominatim</a></span><span class="op">(</span><span class="st">"Kungliga Tekniska Högskolan"</span><span class="op">)</span> 
 
-<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">osm</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">osm</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># coordinates etc</span>
-  <span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
-  <span class="no">osm</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">lat</span>, <span class="no">lon</span>)
-}
+  <span class="va">osm</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">osm</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">lat</span>, <span class="va">lon</span><span class="op">)</span>
+<span class="op">}</span>
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 23</span>
-<span class="co">#&gt; $ place_id              &lt;int&gt; 162168231</span>
-<span class="co">#&gt; $ licence               &lt;chr&gt; "Data © OpenStreetMap contributors, ODbL 1.0. h…</span>
+<span class="co">#&gt; $ place_id              &lt;int&gt; 177346261</span>
+<span class="co">#&gt; $ licence               &lt;chr&gt; "Data © OpenStreetMap contributors, ODbL 1.0. ht…</span>
 <span class="co">#&gt; $ osm_type              &lt;chr&gt; "way"</span>
 <span class="co">#&gt; $ osm_id                &lt;int&gt; 317156082</span>
-<span class="co">#&gt; $ boundingbox           &lt;list&gt; [&lt;"59.3454636", "59.3542387", "18.0623594", "1…</span>
+<span class="co">#&gt; $ boundingbox           &lt;list&gt; &lt;"59.3454636", "59.3542387", "18.0623594", "18.0…</span>
 <span class="co">#&gt; $ lat                   &lt;chr&gt; "59.34986645"</span>
 <span class="co">#&gt; $ lon                   &lt;chr&gt; "18.07063213298418"</span>
-<span class="co">#&gt; $ display_name          &lt;chr&gt; "Kungliga Tekniska högskolan, Norrtullstunneln,…</span>
+<span class="co">#&gt; $ display_name          &lt;chr&gt; "Kungliga Tekniska högskolan, Gärdestunneln, Rud…</span>
 <span class="co">#&gt; $ class                 &lt;chr&gt; "amenity"</span>
 <span class="co">#&gt; $ type                  &lt;chr&gt; "university"</span>
 <span class="co">#&gt; $ importance            &lt;dbl&gt; 0.7991388</span>
-<span class="co">#&gt; $ icon                  &lt;chr&gt; "https://nominatim.openstreetmap.org/ui/mapicon…</span>
+<span class="co">#&gt; $ icon                  &lt;chr&gt; "https://nominatim.openstreetmap.org/ui/mapicons…</span>
 <span class="co">#&gt; $ address.amenity       &lt;chr&gt; "Kungliga Tekniska högskolan"</span>
-<span class="co">#&gt; $ address.road          &lt;chr&gt; "Norrtullstunneln"</span>
-<span class="co">#&gt; $ address.city_block    &lt;chr&gt; "Kattrumpstullen"</span>
+<span class="co">#&gt; $ address.road          &lt;chr&gt; "Gärdestunneln"</span>
+<span class="co">#&gt; $ address.neighbourhood &lt;chr&gt; "Ruddammen"</span>
 <span class="co">#&gt; $ address.suburb        &lt;chr&gt; "Norra Djurgården"</span>
-<span class="co">#&gt; $ address.city_district &lt;chr&gt; "Norrmalms stadsdelsområde"</span>
+<span class="co">#&gt; $ address.city_district &lt;chr&gt; "Östermalms stadsdelsområde"</span>
 <span class="co">#&gt; $ address.city          &lt;chr&gt; "Stockholm"</span>
+<span class="co">#&gt; $ address.municipality  &lt;chr&gt; "Stockholms kommun"</span>
 <span class="co">#&gt; $ address.county        &lt;chr&gt; "Stockholms län"</span>
-<span class="co">#&gt; $ address.region        &lt;chr&gt; "Svealand"</span>
-<span class="co">#&gt; $ address.postcode      &lt;chr&gt; "114 19"</span>
+<span class="co">#&gt; $ address.postcode      &lt;chr&gt; "114 86"</span>
 <span class="co">#&gt; $ address.country       &lt;chr&gt; "Sverige"</span>
 <span class="co">#&gt; $ address.country_code  &lt;chr&gt; "se"</span>
-<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="co">#&gt; # A tibble: 1 × 2</span>
 <span class="co">#&gt;   lat         lon              </span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;            </span>
 <span class="co">#&gt; 1 59.34986645 18.07063213298418</span>
 
 <span class="co"># using MapQuest API, requires .Renviron with MAPQUEST_API_KEY env set</span>
-<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"MAPQUEST_API_KEY"</span>)) <span class="kw">&gt;</span> <span class="fl">0</span>) {
-  <span class="no">mq</span> <span class="kw">&lt;-</span>
-    <span class="fu"><a href="../reference/geocode_mapquest.html">geocode_mapquest</a></span>(
-      <span class="kw">street</span> <span class="kw">=</span> <span class="st">"Kungliga Tekniska Hogskolan"</span>,
-      <span class="kw">zip</span> <span class="kw">=</span> <span class="st">"100 44"</span>,
-      <span class="kw">city</span> <span class="kw">=</span> <span class="st">"Stockholm"</span>)
-
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"MAPQUEST_API_KEY"</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">mq</span> <span class="op">&lt;-</span> 
+    <span class="fu"><a href="../reference/geocode_mapquest.html">geocode_mapquest</a></span><span class="op">(</span>
+      street <span class="op">=</span> <span class="st">"Kungliga Tekniska Hogskolan"</span>,
+      zip <span class="op">=</span> <span class="st">"100 44"</span>,
+      city <span class="op">=</span> <span class="st">"Stockholm"</span><span class="op">)</span> 
+  
   <span class="co"># coordinates etc</span>
-  <span class="no">mq</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"admin"</span>)), <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/iconv.html">iconv</a></span>(<span class="no">x</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="st">"iso-8859-1"</span>)) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(<span class="fl">2</span>) <span class="kw">%&gt;%</span>  <span class="co"># use only the second result</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>()
-
-}
+  <span class="va">mq</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"admin"</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/iconv.html">iconv</a></span><span class="op">(</span><span class="va">x</span>, to <span class="op">=</span> <span class="st">"iso-8859-1"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># use only the second result</span>
+    <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
+  
+<span class="op">}</span>
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 24</span>
 <span class="co">#&gt; $ street             &lt;chr&gt; ""</span>
@@ -192,11 +194,11 @@
 <span class="co">#&gt; $ linkId             &lt;chr&gt; "283537418"</span>
 <span class="co">#&gt; $ unknownInput       &lt;chr&gt; ""</span>
 <span class="co">#&gt; $ type               &lt;chr&gt; "s"</span>
-<span class="co">#&gt; $ mapUrl             &lt;chr&gt; "http://www.mapquestapi.com/staticmap/v5/map?key=l…</span>
+<span class="co">#&gt; $ mapUrl             &lt;chr&gt; "http://www.mapquestapi.com/staticmap/v5/map?key=GM…</span>
 <span class="co">#&gt; $ latLng.lat         &lt;dbl&gt; 59.33377</span>
 <span class="co">#&gt; $ latLng.lng         &lt;dbl&gt; 18.02822</span>
 <span class="co">#&gt; $ displayLatLng.lat  &lt;dbl&gt; 59.33377</span>
-<span class="co">#&gt; $ displayLatLng.lng  &lt;dbl&gt; 18.02822</span></pre></body></html></div>
+<span class="co">#&gt; $ displayLatLng.lng  &lt;dbl&gt; 18.02822</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -212,7 +214,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
