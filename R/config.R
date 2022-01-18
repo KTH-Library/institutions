@@ -30,7 +30,7 @@ institutions_cfg <- function() {
   }
 
   list(
-    src_url = "https://ndownloader.figshare.com/files/25039403",
+    src_url = "https://ndownloader.figshare.com/files/30895309",
     dest = institutions_dir(),
     zip = institutions_zip(),
     db = institutions_db()
