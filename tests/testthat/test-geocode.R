@@ -22,3 +22,15 @@ test_that("geocode calls works", {
   expect_true(is_ok)
 
 })
+
+test_that("geocode mapquest call using location works", {
+
+  my_lat <-
+    geocode_mapquest(location = "KTH, Stockholm, 100 44, Sweden") %>%
+    select(latLng.lat, latLng.lng) %>%
+    pull(latLng.lat)
+
+  is_ok <- abs(my_lat - 59.34987) < 1e-5
+
+  expect_true(is_ok)
+})

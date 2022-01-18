@@ -47,17 +47,20 @@ geocode_nominatim <- function(address) {
 #'
 #' This entitles you to use 15 000 free transactions per month.
 #'
+#' Either use the street, zip, city and country parameters (all of them), or use only the location parameter.
+#'
 #' @param street character string for the street
 #' @param zip character string for the zip code
 #' @param city character string for the city
 #' @param country character string for the county, 2 letter abbreviation, by default "SE"
+#' @param location if provided should hold a full location string, other params would be disregarded
 #' @return tibble with results
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr as_tibble %>%
 #' @importFrom purrr pluck
 #' @importFrom utils URLencode
 #' @export
-geocode_mapquest <- function(street, zip, city, country = "SE") {
+geocode_mapquest <- function(street, zip, city, country = "SE", location) {
 
   key <- Sys.getenv("MAPQUEST_API_KEY")
 
@@ -71,11 +74,20 @@ geocode_mapquest <- function(street, zip, city, country = "SE") {
     return (invisible(FALSE))
   }
 
-  param_json <- '{"options":{},"location":{"street":"%s","city":"%s","state":"","postalCode":"%s","adminArea1":"%s"}}'
-  json <- param_json %>% sprintf(street, city, zip, country)
+  if (!missing(location)) {
 
-  api <- "https://www.mapquestapi.com/geocoding/v1/address?key=%s&json=%s" %>%
-    sprintf(key, URLencode(json))
+    api <- "https://www.mapquestapi.com/geocoding/v1/address?key=%s&location=%s" %>%
+      sprintf(key, URLencode(location))
+
+  } else {
+    # see https://developer.mapquest.com/documentation/common/forming-locations/#advancedLocations
+    param_json <- '{"options":{},"location":{"street":"%s","city":"%s","state":"","postalCode":"%s","adminArea1":"%s"}}'
+    json <- param_json %>% sprintf(street, city, zip, country)
+
+    api <- "https://www.mapquestapi.com/geocoding/v1/address?key=%s&json=%s" %>%
+      sprintf(key, URLencode(json))
+  }
+
 
   jzon <- api %>% jsonlite::fromJSON(simplifyDataFrame = TRUE, flatten = TRUE)
 
