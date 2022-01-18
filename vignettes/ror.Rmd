@@ -48,9 +48,6 @@ ror$ror_ids %>% filter(id == id_kth_ror)
 
 # ROR child table entries for labels, aliases, acronyms, links and types?
 
-# what labels are associated?
-ror$ror_labels %>% filter(id == id_kth_ror)
-
 # what aliases?
 ror$ror_aliases %>% filter(id == id_kth_ror)
 
@@ -77,9 +74,6 @@ A few examples:
 
 # what top five types of orgs are represented in this data?
 ror$ror_types %>% count(types) %>% arrange(desc(n)) %>% head(5)
-
-# what are the most frequent language codes used for labels associated with orgs?
-ror$ror_labels %>% group_by(iso639) %>% count() %>% arrange(desc(n)) %>% head(5)
 
 # top 5 companies with many aliases
 ror$ror_aliases %>% count(aliases) %>% arrange(desc(n)) %>% head(5)

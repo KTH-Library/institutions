@@ -2,15 +2,20 @@ test_that("geocode calls works", {
 
   skip_on_ci()
 
-  t1 <- geocode_nominatim("SOLNA") %>%
-    pull("display_name") == "Solna kommun, Stockholms län, Svealand, Sverige"
+  t1 <-
+    geocode_nominatim("SOLNA") %>%
+    pull("display_name")
+
+  t1 <- t1 == "Solna kommun, Stockholms län, Sverige"
 
   t2 <-
     geocode_mapquest(
       street = "Kungliga Tekniska Högskolan",
       zip = "100 44",
       city = "Stockholm") %>%
-    nrow(.) == 2
+    nrow(.)
+
+  t2 <- t2 == 2
 
   is_ok <- all(t1, t2)
 
