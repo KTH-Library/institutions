@@ -25,6 +25,8 @@ test_that("geocode calls works", {
 
 test_that("geocode mapquest call using location works", {
 
+  skip_on_ci()
+
   my_lat <-
     geocode_mapquest(location = "KTH, Stockholm, 100 44, Sweden") %>%
     select(latLng.lat, latLng.lng) %>%
