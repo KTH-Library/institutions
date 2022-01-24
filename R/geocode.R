@@ -99,4 +99,49 @@ geocode_mapquest <- function(street, zip, city, country = "SE", location) {
     #          .funs = function(x) iconv(x, to = "iso-8859-1"))
 }
 
+#' @importFrom stringi stri_replace_all_fixed
+alex_url_encode <- function(url) {
+  reserved <-  unlist(strsplit("+ - = && || > < ! ( ) { } [ ] ^ \" ~ * ? : \\ /", " "))
+  replacements <- paste0("\\", reserved)
+  url <- stringi::stri_replace_all_fixed(url, reserved, replacements, vectorize_all = FALSE)
+  utils::URLencode(url, reserved = TRUE)
+}
 
+#' Forward geocoding using OpenAlex API
+#'
+#' Uses OpenAlex API affiliation endpoint to lookup a orgname and return ROR ids
+#' and coordinates
+#' @param orgname an organization or institute name
+#' @return tibble with orgname, ROR id etc with best scored data in first row
+#' @details \url{https://ror.readme.io/docs/rest-api#affiliation-parameter}
+#' @examples
+#' \dontrun{
+#' if(interactive()){
+#'  library(dplyr)
+#'  geocode_openalex("KTH") %>%
+#'    select(id, name, ends_with(c("lng", "lat")))
+#'  }
+#' }
+#' @export
+#' @importFrom httr GET content
+#' @importFrom tibble enframe
+#' @importFrom dplyr mutate filter rename_with
+#' @importFrom tidyr pivot_wider
+geocode_openalex <- function(orgname) {
+
+  name <- item_id <- NULL
+
+  res <- httr::GET(
+    "https://api.ror.org/organizations", path = "organizations",
+      query = list(query = alex_url_encode(orgname))
+  )
+
+  tibble::enframe(unlist(httr::content(res))) %>%
+    dplyr::mutate(name = gsub(".", "_", name, fixed = TRUE)) %>%
+    dplyr::mutate(item_id = cumsum(name == "items_id")) %>%
+    dplyr::filter(item_id > 0) %>%
+    tidyr::pivot_wider(values_fn = function(x) paste0(x, collapse = ", ")) %>%
+    dplyr::rename_with(function(x) gsub("items_", "", x)) %>%
+    dplyr::mutate(across(.cols = ends_with(c("lng", "lat")), .fns = readr::parse_number))
+
+}

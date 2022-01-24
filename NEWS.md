@@ -1,3 +1,7 @@
+# institutions 0.2.1
+
+* Added geocode_openalex function
+
 # institutions 0.2.0
 
 * Updated to use the most recent data from GRID and ROR at the time (Jan 18 2022)

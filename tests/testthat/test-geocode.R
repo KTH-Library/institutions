@@ -36,3 +36,20 @@ test_that("geocode mapquest call using location works", {
 
   expect_true(is_ok)
 })
+
+test_that("geocode openalex api call works", {
+
+  skip_on_ci()
+
+  openalex <-
+    geocode_openalex("KTH") %>%
+    select(id, name, ends_with(c("lng", "lat"))) %>%
+    head(1)
+
+  is_ok <-
+    openalex$id == "https://ror.org/026vcq606" &&
+    (openalex$addresses_lng - 18.073526) < 1e-5 &&
+    (openalex$addresses_lat - 59.34748) < 1e-5
+
+  expect_true(is_ok)
+})

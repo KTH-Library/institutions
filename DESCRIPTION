@@ -1,6 +1,6 @@
 Package: institutions
 Title: Global Research Identifier Database (GRID)
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person(given = "Markus",
            family = "Skyttner",
@@ -25,7 +25,10 @@ Imports:
     tibble,
     zip,
     jsonlite,
-    dbplyr
+    dbplyr,
+    httr,
+    tidyr,
+    stringi
 Suggests: 
     knitr,
     rmarkdown,
@@ -37,6 +40,6 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)
