@@ -11,10 +11,10 @@ mr <-
 
 # optional filters
 data <-
-  mr # %>% filter(Comment == "Can't find a ROR")
+  mr %>% head(10) # %>% filter(Comment == "Can't find a ROR")
 
 # fcn to iterate over those names
-openalex_guess <- function(data) {
+ror_guess <- function(data) {
 
   orgz <- data$Name_eng
   countriez <- data$Country_name
@@ -28,17 +28,17 @@ openalex_guess <- function(data) {
     .f = function(x) {
       pb$tick()
       Sys.sleep(1 / 100)
-      geocode_openalex(x) %>%
+      geocode_ror(x) %>%
       bind_cols(org_lookup = x) %>%
       select(org_lookup, everything())
     },
     otherwise = data.frame()
   )
 
-  openalex_guesses <-
+  ror_guesses <-
     lookups %>% map_df(candidates)
 
-  openalex_guesses %>%
+  ror_guesses %>%
     left_join(
       tibble(org_lookup = lookups, country_name = countriez),
         by = c("org_lookup")) %>%
@@ -50,7 +50,7 @@ openalex_guess <- function(data) {
 # takes around 5 min for approx 1800 orgnames
 # NB: no throttling other than 10 ms between requests
 guesses <-
-  openalex_guess(data)
+  ror_guess(data)
 
 # add jaro-winkler score for "good matches" based on names
 score <-
@@ -65,8 +65,8 @@ out <-
   arrange(jw_score) %>%
   filter(jw_score < 0.2) %>%
   select(
-    score, Name_eng, name,
-    Unified_org_id, Country_name, ror_id = id, addresses_lat, addresses_lng,
+    jw_score, Name_eng, name,
+    Unified_org_id, Country_name, id, addresses_lat, addresses_lng,
     everything()
   )
 

@@ -2,7 +2,7 @@
 
 export(geocode_mapquest)
 export(geocode_nominatim)
-export(geocode_openalex)
+export(geocode_ror)
 export(institutions_cfg)
 export(institutions_download)
 export(institutions_query)

@@ -1,6 +1,6 @@
 # institutions 0.2.1
 
-* Added geocode_openalex function
+* Added geocode_ror function
 
 # institutions 0.2.0
 
