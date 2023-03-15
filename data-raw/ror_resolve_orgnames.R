@@ -21,7 +21,7 @@ ror_guess <- function(data) {
   lookups <- paste0(orgz, ", ", countriez)
 
   pb <- progress_bar$new(
-    format = "  open alex resolving [:bar] :percent eta: :eta",
+    format = "  resolving [:bar] :percent eta: :eta",
     total = length(lookups), clear = FALSE, width = 60)
 
   candidates <- purrr::possibly(
