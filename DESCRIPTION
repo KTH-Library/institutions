@@ -11,7 +11,8 @@ Description: The grid.ac website provides open data on
     downloads the data and generates a SQLite3 db, making data available
     with full text search capabilities to use from R.
 License: MIT + file LICENSE
-URL: https://github.com/KTH-Library/institutions
+URL: https://github.com/KTH-Library/institutions,
+    https://kth-library.github.io/institutions/
 BugReports: https://github.com/KTH-Library/institutions/issues
 Imports: 
     dplyr,

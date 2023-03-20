@@ -9,6 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg)](https://github.com/KTH-Library/institutions/actions)
+[![R-CMD-check](https://github.com/KTH-Library/institutions/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/KTH-Library/institutions/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of the R package `institutions` is to provide access to
@@ -31,9 +32,9 @@ dataset exposed in this R package.
 ## R “data package” background
 
 This R package is a kind of [“data
-package”](https://r-pkgs.org/data.html#data-data) primarily intended
-to be used to provide reference data (from GRID and ROR) when used in
-other workflows. It is not a “data only package”, since it provides some
+package”](https://r-pkgs.org/data.html#data-data) primarily intended to
+be used to provide reference data (from GRID and ROR) when used in other
+workflows. It is not a “data only package”, since it provides some
 functions that might also be useful when doing data wrangling against
 this reference data (mainly for supporting geocoding and full text
 search lookups).
@@ -83,16 +84,16 @@ institutions_download()
 # where are the data files - remotely and locally?
 institutions_cfg()
 #> $src_url
-#> [1] "https://digitalscience.figshare.com/ndownloader/files/20151785"
+#> [1] "https://ndownloader.figshare.com/files/30895309"
 #> 
 #> $dest
-#> [1] "/home/markus/.config/institutions"
+#> [1] "~/.config/institutions"
 #> 
 #> $zip
-#> [1] "/home/markus/.config/institutions/grid.zip"
+#> [1] "~/.config/institutions/grid.zip"
 #> 
 #> $db
-#> [1] "/home/markus/.config/institutions/grid.db"
+#> [1] "~/.config/institutions/grid.db"
 ```
 
 To do a full text search for institutional addresses and locations (see
@@ -102,12 +103,13 @@ here](https://www.sqlite.org/fts5.html#full_text_query_syntax)):
 ``` r
 # do a full text search for institutions matching the search query "Royal AND Technology
 institutions_search("Royal AND Technology")
-#> # A tibble: 1 x 15
-#>   institutes grid_id line_1 line_2 line_3   lat   lng postcode primary city 
-#>   <chr>      <chr>   <chr>   <int>  <int> <dbl> <dbl> <chr>      <int> <chr>
-#> 1 Royal Ins… grid.5… <NA>       NA     NA  59.3  18.1 <NA>           0 Stoc…
-#> # … with 5 more variables: state <chr>, state_code <chr>, country <chr>,
-#> #   country_code <chr>, geonames_city_id <dbl>
+#> # A tibble: 1 × 15
+#>   institu…¹ grid_id line_1 line_2 line_3   lat   lng postc…² primary city  state
+#>   <chr>     <chr>   <chr>  <chr>   <int> <dbl> <dbl> <chr>     <int> <chr> <chr>
+#> 1 Royal In… grid.5… <NA>   <NA>       NA  59.3  18.1 <NA>          0 Stoc… <NA> 
+#> # … with 4 more variables: state_code <chr>, country <chr>, country_code <chr>,
+#> #   geonames_city_id <dbl>, and abbreviated variable names ¹​institutes,
+#> #   ²​postcode
 ```
 
 All tables in the database can be enumerated and accessed individually:
@@ -122,7 +124,7 @@ institutions_tables()
 
 # get acronym data
 institutions_table("acronyms")
-#> # A tibble: 41,210 x 2
+#> # A tibble: 42,840 × 2
 #>    grid_id     acronym
 #>    <chr>       <chr>  
 #>  1 grid.1001.0 ANU    
@@ -135,7 +137,7 @@ institutions_table("acronyms")
 #>  8 grid.1013.3 USYD   
 #>  9 grid.1016.6 CSIRO  
 #> 10 grid.1017.7 RMIT   
-#> # … with 41,200 more rows
+#> # … with 42,830 more rows
 ```
 
 Custom queries can be made:
@@ -149,7 +151,7 @@ id <- institutions_search("Royal Institute of Technology")$grid_id
 sql <- sprintf("select * from links where grid_id = '%s'", id)
 
 institutions_query(sql)
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   grid_id     link                
 #>   <chr>       <chr>               
 #> 1 grid.5037.1 http://www.kth.se/en
