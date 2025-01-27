@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,18 +36,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">institutions</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/institutions.html">Get started</a>
 </li>
@@ -53,7 +49,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/KTH-Library/institutions/">
+  <a href="https://github.com/KTH-Library/institutions/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -93,147 +89,160 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="institutions" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#institutions" class="anchor"></a>institutions</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="institutions">institutions<a class="anchor" aria-label="anchor" href="#institutions"></a>
+</h1></div>
 <!-- badges: start -->
 
-<p>The goal of the R package <code>institutions</code> is to provide access to institutional data in R from the Global Research Identifier Database (GRID) which is available under the Creative Commons Public Domain 1.0 International licence (see <a href="https://grid.ac" class="uri">https://grid.ac</a>). This dataset is used by for example Altmetric, Dimensions, Figshare and others.</p>
-<p>This package also embeds data from from the Research Organization Registry Community (see <a href="https://ror.org/" class="uri">https://ror.org/</a>). All ROR IDs and metadata are provided under the Creative Commons CC0 1.0 Universal Public Domain Dedication. There are no restrictions on access to and use of ROR IDs and metadata. Some more information about this dataset can be found at: <a href="https://ror.org/facts/#core-components" class="uri">https://ror.org/facts/#core-components</a>. The <code>ror</code> dataset provides acccess to this data from within R; the <code>ror$ror_ids</code> table contains external identifers including, for all records, the GRID identifier. This identifier can be used to link to the ROR data with the GRID dataset exposed in this R package.</p>
-<div id="r-data-package-background" class="section level2">
-<h2 class="hasAnchor">
-<a href="#r-data-package-background" class="anchor"></a>R “data package” background</h2>
-<p>This R package is a kind of <a href="https://r-pkgs.org/data.html#data-data">“data package”</a> primarily intended to be used to provide reference data (from GRID and ROR) when used in other workflows. It is not a “data only package”, since it provides some functions that might also be useful when doing data wrangling against this reference data (mainly for supporting geocoding and full text search lookups).</p>
-<p>The package downloads some curated data from <a href="https://digitalscience.figshare.com/ndownloader/files/20151785" class="uri">https://digitalscience.figshare.com/ndownloader/files/20151785</a> and migrates this into a full text search indexed SQLite database residing locally. This FTS-enabled database is then exposed through a couple of functions by way of tibbles.</p>
-<p>The idea is to show how to provide access to a potentially provide access to a larger database and how to enable use of in-built full text search capabilities in SQLite by downloading potentially big remote data and installing it locally using <a href="https://rdrr.io/cran/rappdirs/"><code>rappdirs</code></a>.</p>
+<p>The goal of the R package <code>institutions</code> is to provide access to institutional data in R from the Global Research Identifier Database (GRID) which is available under the Creative Commons Public Domain 1.0 International licence (see <a href="https://grid.ac" class="external-link uri">https://grid.ac</a>). This dataset is used by for example Altmetric, Dimensions, Figshare and others.</p>
+<p>This package also embeds data from from the Research Organization Registry Community (see <a href="https://ror.org/" class="external-link uri">https://ror.org/</a>). All ROR IDs and metadata are provided under the Creative Commons CC0 1.0 Universal Public Domain Dedication. There are no restrictions on access to and use of ROR IDs and metadata. Some more information about this dataset can be found at: <a href="https://ror.org/facts/#core-components" class="external-link uri">https://ror.org/facts/#core-components</a>. The <code>ror</code> dataset provides acccess to this data from within R; the <code>ror$ror_ids</code> table contains external identifers including, for all records, the GRID identifier. This identifier can be used to link to the ROR data with the GRID dataset exposed in this R package.</p>
+<div class="section level2">
+<h2 id="r-data-package-background">R “data package” background<a class="anchor" aria-label="anchor" href="#r-data-package-background"></a>
+</h2>
+<p>This R package is a kind of <a href="https://r-pkgs.org/data.html#data-data" class="external-link">“data package”</a> primarily intended to be used to provide reference data (from GRID and ROR) when used in other workflows. It is not a “data only package”, since it provides some functions that might also be useful when doing data wrangling against this reference data (mainly for supporting geocoding and full text search lookups).</p>
+<p>The package downloads some curated data from <a href="https://digitalscience.figshare.com/ndownloader/files/20151785" class="external-link uri">https://digitalscience.figshare.com/ndownloader/files/20151785</a> and migrates this into a full text search indexed SQLite database residing locally. This FTS-enabled database is then exposed through a couple of functions by way of tibbles.</p>
+<p>The idea is to show how to provide access to a potentially provide access to a larger database and how to enable use of in-built full text search capabilities in SQLite by downloading potentially big remote data and installing it locally using <a href="https://rdrr.io/cran/rappdirs/" class="external-link"><code>rappdirs</code></a>.</p>
 <p>With this approach, the R package can stay small. There are a few minor practical drawbacks - mostly that your package will initially not work off-line until at least one initial successfull call to download the data has been made which would require a connection to the Internet.</p>
 <p>The upside is being able to tap into things like Full Text Search for datasets and with this approach the package can stay small and pass the CRAN checks without requiring exceptions, while the dataset size is only limited to 2TB (an SQLite limitation).</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the development version of institutions from <a href="https://github.com/KTH-Library/institutions">GitHub</a> with:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of institutions from <a href="https://github.com/KTH-Library/institutions" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
-<span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"KTH-Library/institutions"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"KTH-Library/institutions"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>This is a basic example which shows you how to get started:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions">institutions</a></span><span class="op">)</span>
-
-<span class="co"># on first run, make sure to download the data which will generate the SQLite db </span>
-<span class="fu"><a href="reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># where are the data files - remotely and locally?</span>
-<span class="fu"><a href="reference/institutions_cfg.html">institutions_cfg</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; $src_url</span>
-<span class="co">#&gt; [1] "https://digitalscience.figshare.com/ndownloader/files/20151785"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dest</span>
-<span class="co">#&gt; [1] "/home/markus/.config/institutions"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $zip</span>
-<span class="co">#&gt; [1] "/home/markus/.config/institutions/grid.zip"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $db</span>
-<span class="co">#&gt; [1] "/home/markus/.config/institutions/grid.db"</span></code></pre></div>
-<p>To do a full text search for institutional addresses and locations (see <a href="https://www.sqlite.org/fts5.html#full_text_query_syntax">details on FTS syntax here</a>):</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KTH-Library/institutions" class="external-link">institutions</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># on first run, make sure to download the data which will generate the SQLite db </span></span>
+<span><span class="fu"><a href="reference/institutions_download.html">institutions_download</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># where are the data files - remotely and locally?</span></span>
+<span><span class="fu"><a href="reference/institutions_cfg.html">institutions_cfg</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $src_url</span></span>
+<span><span class="co">#&gt; [1] "https://ndownloader.figshare.com/files/30895309"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $dest</span></span>
+<span><span class="co">#&gt; [1] "~/.config/institutions"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $zip</span></span>
+<span><span class="co">#&gt; [1] "~/.config/institutions/grid.zip"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $db</span></span>
+<span><span class="co">#&gt; [1] "~/.config/institutions/grid.db"</span></span></code></pre></div>
+<p>To do a full text search for institutional addresses and locations (see <a href="https://www.sqlite.org/fts5.html#full_text_query_syntax" class="external-link">details on FTS syntax here</a>):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># do a full text search for institutions matching the search query "Royal AND Technology</span>
-<span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal AND Technology"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 15</span>
-<span class="co">#&gt;   institutes grid_id line_1 line_2 line_3   lat   lng postcode primary city </span>
-<span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;</span>
-<span class="co">#&gt; 1 Royal Ins… grid.5… &lt;NA&gt;       NA     NA  59.3  18.1 &lt;NA&gt;           0 Stoc…</span>
-<span class="co">#&gt; # … with 5 more variables: state &lt;chr&gt;, state_code &lt;chr&gt;, country &lt;chr&gt;,</span>
-<span class="co">#&gt; #   country_code &lt;chr&gt;, geonames_city_id &lt;dbl&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># do a full text search for institutions matching the search query "Royal AND Technology</span></span>
+<span><span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal AND Technology"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 15</span></span>
+<span><span class="co">#&gt;   institu…¹ grid_id line_1 line_2 line_3   lat   lng postc…² primary city  state</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 Royal In… grid.5… &lt;NA&gt;   &lt;NA&gt;       NA  59.3  18.1 &lt;NA&gt;          0 Stoc… &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; # … with 4 more variables: state_code &lt;chr&gt;, country &lt;chr&gt;, country_code &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   geonames_city_id &lt;dbl&gt;, and abbreviated variable names ¹​institutes,</span></span>
+<span><span class="co">#&gt; #   ²​postcode</span></span></code></pre></div>
 <p>All tables in the database can be enumerated and accessed individually:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># enumerate all db tables</span>
-<span class="fu"><a href="reference/institutions_tables.html">institutions_tables</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "acronyms"      "addresses"     "aliases"       "external_ids" </span>
-<span class="co">#&gt;  [5] "geonames"      "grid"          "institutes"    "labels"       </span>
-<span class="co">#&gt;  [9] "links"         "relationships" "types"</span>
-
-<span class="co"># get acronym data</span>
-<span class="fu"><a href="reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="st">"acronyms"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 41,210 x 2</span>
-<span class="co">#&gt;    grid_id     acronym</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 grid.1001.0 ANU    </span>
-<span class="co">#&gt;  2 grid.1003.2 UQ     </span>
-<span class="co">#&gt;  3 grid.1005.4 UNSW   </span>
-<span class="co">#&gt;  4 grid.1007.6 UOW    </span>
-<span class="co">#&gt;  5 grid.1009.8 UTAS   </span>
-<span class="co">#&gt;  6 grid.1011.1 JCU    </span>
-<span class="co">#&gt;  7 grid.1012.2 UWA    </span>
-<span class="co">#&gt;  8 grid.1013.3 USYD   </span>
-<span class="co">#&gt;  9 grid.1016.6 CSIRO  </span>
-<span class="co">#&gt; 10 grid.1017.7 RMIT   </span>
-<span class="co">#&gt; # … with 41,200 more rows</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># enumerate all db tables</span></span>
+<span><span class="fu"><a href="reference/institutions_tables.html">institutions_tables</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "acronyms"      "addresses"     "aliases"       "external_ids" </span></span>
+<span><span class="co">#&gt;  [5] "geonames"      "grid"          "institutes"    "labels"       </span></span>
+<span><span class="co">#&gt;  [9] "links"         "relationships" "types"</span></span>
+<span></span>
+<span><span class="co"># get acronym data</span></span>
+<span><span class="fu"><a href="reference/institutions_table.html">institutions_table</a></span><span class="op">(</span><span class="st">"acronyms"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 42,840 × 2</span></span>
+<span><span class="co">#&gt;    grid_id     acronym</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 grid.1001.0 ANU    </span></span>
+<span><span class="co">#&gt;  2 grid.1003.2 UQ     </span></span>
+<span><span class="co">#&gt;  3 grid.1005.4 UNSW   </span></span>
+<span><span class="co">#&gt;  4 grid.1007.6 UOW    </span></span>
+<span><span class="co">#&gt;  5 grid.1009.8 UTAS   </span></span>
+<span><span class="co">#&gt;  6 grid.1011.1 JCU    </span></span>
+<span><span class="co">#&gt;  7 grid.1012.2 UWA    </span></span>
+<span><span class="co">#&gt;  8 grid.1013.3 USYD   </span></span>
+<span><span class="co">#&gt;  9 grid.1016.6 CSIRO  </span></span>
+<span><span class="co">#&gt; 10 grid.1017.7 RMIT   </span></span>
+<span><span class="co">#&gt; # … with 42,830 more rows</span></span></code></pre></div>
 <p>Custom queries can be made:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># a custom query, first get an id to work with</span>
-<span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal Institute of Technology"</span><span class="op">)</span><span class="op">$</span><span class="va">grid_id</span>
-
-<span class="co"># assemble some sql using that id</span>
-<span class="va">sql</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"select * from links where grid_id = '%s'"</span>, <span class="va">id</span><span class="op">)</span>
-
-<span class="fu"><a href="reference/institutions_query.html">institutions_query</a></span><span class="op">(</span><span class="va">sql</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 2</span>
-<span class="co">#&gt;   grid_id     link                </span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;               </span>
-<span class="co">#&gt; 1 grid.5037.1 http://www.kth.se/en</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># a custom query, first get an id to work with</span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/institutions_search.html">institutions_search</a></span><span class="op">(</span><span class="st">"Royal Institute of Technology"</span><span class="op">)</span><span class="op">$</span><span class="va">grid_id</span></span>
+<span></span>
+<span><span class="co"># assemble some sql using that id</span></span>
+<span><span class="va">sql</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"select * from links where grid_id = '%s'"</span>, <span class="va">id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/institutions_query.html">institutions_query</a></span><span class="op">(</span><span class="va">sql</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   grid_id     link                </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;               </span></span>
+<span><span class="co">#&gt; 1 grid.5037.1 http://www.kth.se/en</span></span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/KTH-Library/institutions/">https://​github.com/​KTH-Library/​institutions/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/KTH-Library/institutions/issues">https://​github.com/​KTH-Library/​institutions/​issues</a>
-</li>
+<li><a href="https://github.com/KTH-Library/institutions/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/KTH-Library/institutions/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing institutions</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Markus Skyttner <br><small class="roles"> Maintainer, author </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://github.com/KTH-Library/institutions/actions"><img src="https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/KTH-Library/institutions/actions" class="external-link"><img src="https://github.com/KTH-Library/institutions/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/KTH-Library/institutions/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/KTH-Library/institutions/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Markus Skyttner.</p>
+  <p></p>
+<p>Developed by Markus Skyttner.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -241,6 +250,8 @@
 
   
 
+
+  
 
   </body>
 </html>
