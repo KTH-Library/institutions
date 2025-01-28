@@ -1,3 +1,4 @@
-url: https://kth-library.github.io/institutions/
 destination: docs
-
+url: https://kth-library.github.io/institutions/
+template:
+  bootstrap: 5
