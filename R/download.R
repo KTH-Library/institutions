@@ -92,6 +92,7 @@ create_db <- function(db, src_zip) {
 #' GRID Institutions Database SQLite database connection
 #' @importFrom dplyr src_sqlite
 #' @importFrom RSQLite dbConnect SQLite
+#' @importFrom dbplyr src_dbi
 #' @noRd
 src_sqlite_institutions <- function() {
 
