@@ -20,7 +20,8 @@ geocode_nominatim <- function(address) {
     return(data.frame())
 
   api <-
-    "https://nominatim.openstreetmap.org/search/%s?format=json&addressdetails=1&limit=1" %>%
+    "https://nominatim.openstreetmap.org/search.php?q=%s&format=json&addressdetails=1&limit=1" |>    
+#    "https://nominatim.openstreetmap.org/search/%s?format=json&addressdetails=1&limit=1" %>%
     sprintf(URLencode(address))
 
   d <- tryCatch(
@@ -61,6 +62,8 @@ geocode_nominatim <- function(address) {
 #' @importFrom utils URLencode
 #' @export
 geocode_mapquest <- function(street, zip, city, country = "SE", location) {
+
+  .Deprecated(old = "geocode_mapquest", new = "geocode_nominatim")
 
   key <- Sys.getenv("MAPQUEST_API_KEY")
 
