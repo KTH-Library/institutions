@@ -23,7 +23,7 @@ library(institutions)
 library(dplyr)
 library(curl)
 
-institutions_download()
+institutions_download(overwrite = TRUE)
 
 # using Nominatim API (Open Street Map)
 osm <- 
