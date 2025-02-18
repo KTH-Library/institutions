@@ -1,72 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kth-library.github.io/institutions/404.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/articles/geocode.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/articles/institutions.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/articles/meta.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/articles/ror.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/geocode_mapquest.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/geocode_nominatim.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/geocode_ror.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions-package.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_cfg.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_download.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_query.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_search.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_table.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/institutions_tables.html</loc>
-  </url>
-  <url>
-    <loc>https://kth-library.github.io/institutions/reference/ror.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://kth-library.github.io/institutions/404.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/LICENSE-text.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/LICENSE.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/articles/geocode.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/articles/index.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/articles/institutions.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/articles/meta.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/articles/ror.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/authors.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/index.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/news/index.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/geocode_mapquest.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/geocode_nominatim.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/geocode_ror.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/index.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions-package.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_cfg.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_download.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_query.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_search.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_table.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/institutions_tables.html</loc></url>
+<url><loc>https://kth-library.github.io/institutions/reference/ror.html</loc></url>
 </urlset>
+
