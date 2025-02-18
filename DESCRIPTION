@@ -1,6 +1,6 @@
 Package: institutions
 Title: Global Research Identifier Database (GRID)
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: 
     person(given = "Markus",
            family = "Skyttner",
@@ -14,9 +14,9 @@ License: MIT + file LICENSE
 URL: https://github.com/KTH-Library/institutions,
     https://kth-library.github.io/institutions/
 BugReports: https://github.com/KTH-Library/institutions/issues
-Imports: 
+Imports:
     dplyr,
-    progress,
+    dbplyr,
     purrr,
     rappdirs,
     readr,
@@ -26,7 +26,6 @@ Imports:
     tibble,
     zip,
     jsonlite,
-    dbplyr,
     httr,
     tidyr,
     stringi
@@ -41,6 +40,6 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)

@@ -6,3 +6,6 @@ inst/doc
 doc
 Meta
 docs
+/.quarto/
+/doc/
+/Meta/

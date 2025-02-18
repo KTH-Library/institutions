@@ -23,7 +23,7 @@ library(institutions)
 library(dplyr)
 library(curl)
 
-institutions_download()
+institutions_download(overwrite = TRUE)
 
 # using Nominatim API (Open Street Map)
 osm <- 
@@ -35,20 +35,20 @@ if (nrow(osm) > 0) {
   osm %>% select(lat, lon)
 }
 
-# using MapQuest API, requires .Renviron with MAPQUEST_API_KEY env set
-if (nchar(Sys.getenv("MAPQUEST_API_KEY")) > 0) {
-  mq <- 
-    geocode_mapquest(
-      street = "Kungliga Tekniska Hogskolan",
-      zip = "100 44",
-      city = "Stockholm") 
+# # using MapQuest API, requires .Renviron with MAPQUEST_API_KEY env set
+# if (nchar(Sys.getenv("MAPQUEST_API_KEY")) > 0) {
+#   mq <- 
+#     geocode_mapquest(
+#       street = "Kungliga Tekniska Hogskolan",
+#       zip = "100 44",
+#       city = "Stockholm") 
   
-  # coordinates etc
-  mq %>%
-    mutate_at(vars(starts_with("admin")), function(x) iconv(x, to = "iso-8859-1")) %>%
-    slice(2) %>%  # use only the second result
-    glimpse()
-  
-}
+#   # coordinates etc
+#   mq %>%
+#     mutate_at(vars(starts_with("admin")), function(x) iconv(x, to = "iso-8859-1")) %>%
+#     slice(2) %>%  # use only the second result
+#     glimpse()
+#  
+#}
 
 ```
