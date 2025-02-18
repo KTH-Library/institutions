@@ -32,9 +32,9 @@ dataset exposed in this R package.
 ## R “data package” background
 
 This R package is a kind of [“data
-package”](https://r-pkgs.org/data.html#data-data) primarily intended to
-be used to provide reference data (from GRID and ROR) when used in other
-workflows. It is not a “data only package”, since it provides some
+package”](https://r-pkgs.org/data.html#data-data) primarily intended
+to be used to provide reference data (from GRID and ROR) when used in
+other workflows. It is not a “data only package”, since it provides some
 functions that might also be useful when doing data wrangling against
 this reference data (mainly for supporting geocoding and full text
 search lookups).
@@ -104,12 +104,11 @@ here](https://www.sqlite.org/fts5.html#full_text_query_syntax)):
 # do a full text search for institutions matching the search query "Royal AND Technology
 institutions_search("Royal AND Technology")
 #> # A tibble: 1 × 15
-#>   institu…¹ grid_id line_1 line_2 line_3   lat   lng postc…² primary city  state
-#>   <chr>     <chr>   <chr>  <chr>   <int> <dbl> <dbl> <chr>     <int> <chr> <chr>
-#> 1 Royal In… grid.5… <NA>   <NA>       NA  59.3  18.1 <NA>          0 Stoc… <NA> 
-#> # … with 4 more variables: state_code <chr>, country <chr>, country_code <chr>,
-#> #   geonames_city_id <dbl>, and abbreviated variable names ¹​institutes,
-#> #   ²​postcode
+#>   institutes     grid_id line_1 line_2 line_3   lat   lng postcode primary city 
+#>   <chr>          <chr>   <chr>  <chr>   <int> <dbl> <dbl> <chr>      <int> <chr>
+#> 1 Royal Institu… grid.5… <NA>   <NA>       NA  59.3  18.1 <NA>           0 Stoc…
+#> # ℹ 5 more variables: state <chr>, state_code <chr>, country <chr>,
+#> #   country_code <chr>, geonames_city_id <dbl>
 ```
 
 All tables in the database can be enumerated and accessed individually:
@@ -137,7 +136,7 @@ institutions_table("acronyms")
 #>  8 grid.1013.3 USYD   
 #>  9 grid.1016.6 CSIRO  
 #> 10 grid.1017.7 RMIT   
-#> # … with 42,830 more rows
+#> # ℹ 42,830 more rows
 ```
 
 Custom queries can be made:

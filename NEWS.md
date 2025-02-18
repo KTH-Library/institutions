@@ -1,3 +1,9 @@
+# institutions 0.2.2
+
+* Updated to most recent data from GRID and ROR at the time (Feb 18, 2025)
+
+* Deprecated mapquest geocoding fcn
+
 # institutions 0.2.1
 
 * Added geocode_ror function

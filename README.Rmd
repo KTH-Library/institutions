@@ -60,7 +60,7 @@ institutions_download()
 institutions_cfg()
 ```
 
-To do a full text search for institutional addresses and locations (see [details on FTS syntax here](https://www.sqlite.org/fts5.html#full_text_query_syntax)):
+To do a full text search for institutional addresses and locations (see [details on FTS syntax here](https://www.sqlite.org/fts5.html#full_text_query_syntax)): 
 
 ```{r}
 # do a full text search for institutions matching the search query "Royal AND Technology
