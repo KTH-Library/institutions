@@ -2,10 +2,11 @@
 #'
 #'@param overwrite logical indicating if local db should be overwritten
 #'@param cfg the config to use when downloading, by default institutions_cfg()
+#'@param retries number of download attempts before giving up
 #'@return logical indicating if the db exists locally, invisibly
 #'@importFrom utils download.file
 #'@export
-institutions_download <- function(overwrite = FALSE, cfg = institutions_cfg()) {
+institutions_download <- function(overwrite = FALSE, cfg = institutions_cfg(), retries = 3) {
 
   stopifnot(is.logical(overwrite))
 
@@ -16,11 +17,7 @@ institutions_download <- function(overwrite = FALSE, cfg = institutions_cfg()) {
 
   if (overwrite || !file.exists(cfg$zip)) {
     message("Downloading data from ", cfg$src_url)
-    download.file(
-      cfg$src_url, destfile = cfg$zip,
-      mode = "wb", quiet = TRUE
-    )
-
+    download_with_retry(cfg$src_url, destfile = cfg$zip, retries = retries)
   }
 
   if (overwrite || !file.exists(cfg$db)) {
@@ -35,6 +32,41 @@ institutions_download <- function(overwrite = FALSE, cfg = institutions_cfg()) {
   }
 
   invisible(file.exists(cfg$db))
+}
+
+#' Download a file, retrying on transient failures
+#'
+#' Figshare's download links redirect to a short-lived presigned S3 URL,
+#' which can occasionally fail on slow or flaky connections; retrying with
+#' a short backoff resolves most such cases.
+#'
+#' @param url source url to download
+#' @param destfile local destination path
+#' @param retries number of attempts before giving up
+#' @importFrom utils download.file
+#' @noRd
+download_with_retry <- function(url, destfile, retries = 3) {
+
+  attempt <- 1
+  repeat {
+    result <- tryCatch({
+      download.file(url, destfile = destfile, mode = "wb", quiet = TRUE)
+      TRUE
+    }, error = function(e) e)
+
+    if (isTRUE(result))
+      return(invisible(TRUE))
+
+    if (attempt >= retries)
+      stop("Failed to download ", url, " after ", retries, " attempts: ",
+           conditionMessage(result))
+
+    message("Download attempt ", attempt, " failed (", conditionMessage(result),
+            "), retrying...")
+    Sys.sleep(2 * attempt)
+    attempt <- attempt + 1
+  }
+
 }
 
 #' Create local sqlite3 db from downloaded GRID zip data

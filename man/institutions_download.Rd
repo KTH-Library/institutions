@@ -4,12 +4,14 @@
 \alias{institutions_download}
 \title{Download the GRID dataset and install the local SQLite3 database}
 \usage{
-institutions_download(overwrite = FALSE, cfg = institutions_cfg())
+institutions_download(overwrite = FALSE, cfg = institutions_cfg(), retries = 3)
 }
 \arguments{
 \item{overwrite}{logical indicating if local db should be overwritten}
 
 \item{cfg}{the config to use when downloading, by default institutions_cfg()}
+
+\item{retries}{number of download attempts before giving up}
 }
 \value{
 logical indicating if the db exists locally, invisibly
