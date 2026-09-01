@@ -48,8 +48,8 @@ if (nrow(osm) > 0) {
   osm %>% select(lat, lon)
 }
 #> Rows: 1
-#> Columns: 26
-#> $ place_id                 <int> 165702790
+#> Columns: 25
+#> $ place_id                 <int> 165094897
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "way"
 #> $ osm_id                   <int> 317156082
@@ -61,18 +61,17 @@ if (nrow(osm) > 0) {
 #> $ importance               <dbl> 0.5636313
 #> $ addresstype              <chr> "amenity"
 #> $ name                     <chr> "Kungliga Tekniska högskolan"
-#> $ display_name             <chr> "Kungliga Tekniska högskolan, Baldersgatan, L…
+#> $ display_name             <chr> "Kungliga Tekniska högskolan, Valhallavägen, …
 #> $ boundingbox              <list> <"59.3454636", "59.3542387", "18.0623594", "1…
 #> $ address.amenity          <chr> "Kungliga Tekniska högskolan"
-#> $ address.road             <chr> "Baldersgatan"
-#> $ address.neighbourhood    <chr> "Lärkstaden"
-#> $ address.suburb           <chr> "Östermalm"
+#> $ address.road             <chr> "Valhallavägen"
+#> $ address.suburb           <chr> "Norra Djurgården"
 #> $ address.city_district    <chr> "Norra innerstadens stadsdelsområde"
 #> $ address.city             <chr> "Stockholm"
 #> $ address.municipality     <chr> "Stockholms kommun"
 #> $ address.county           <chr> "Stockholms län"
 #> $ `address.ISO3166-2-lvl4` <chr> "SE-AB"
-#> $ address.postcode         <chr> "100 41"
+#> $ address.postcode         <chr> "114 32"
 #> $ address.country          <chr> "Sverige"
 #> $ address.country_code     <chr> "se"
 #> # A tibble: 1 × 2
