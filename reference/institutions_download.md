@@ -5,7 +5,7 @@ Download the GRID dataset and install the local SQLite3 database
 ## Usage
 
 ``` r
-institutions_download(overwrite = FALSE, cfg = institutions_cfg())
+institutions_download(overwrite = FALSE, cfg = institutions_cfg(), retries = 3)
 ```
 
 ## Arguments
@@ -17,6 +17,10 @@ institutions_download(overwrite = FALSE, cfg = institutions_cfg())
 - cfg:
 
   the config to use when downloading, by default institutions_cfg()
+
+- retries:
+
+  number of download attempts before giving up
 
 ## Value
 

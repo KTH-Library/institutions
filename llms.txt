@@ -55,6 +55,7 @@ You can install the development version of institutions from
 [GitHub](https://github.com/KTH-Library/institutions) with:
 
 ``` r
+
 library(devtools)
 install_github("KTH-Library/institutions", dependencies = TRUE)
 ```
@@ -64,6 +65,7 @@ install_github("KTH-Library/institutions", dependencies = TRUE)
 This is a basic example which shows you how to get started:
 
 ``` r
+
 library(institutions)
 
 # on first run, make sure to download the data which will generate the SQLite db 
@@ -89,6 +91,7 @@ To do a full text search for institutional addresses and locations (see
 here](https://www.sqlite.org/fts5.html#full_text_query_syntax)):
 
 ``` r
+
 # do a full text search for institutions matching the search query "Royal AND Technology
 institutions_search("Royal AND Technology")
 #> # A tibble: 1 × 15
@@ -102,6 +105,7 @@ institutions_search("Royal AND Technology")
 All tables in the database can be enumerated and accessed individually:
 
 ``` r
+
 
 # enumerate all db tables
 institutions_tables()
@@ -130,6 +134,7 @@ institutions_table("acronyms")
 Custom queries can be made:
 
 ``` r
+
 
 # a custom query, first get an id to work with
 id <- institutions_search("Royal Institute of Technology")$grid_id

@@ -4,6 +4,7 @@ A short example to display a map of some institutions with “Stockholm”
 in their names and located in Sweden:
 
 ``` r
+
 library(institutions)
 library(dplyr, warn.conflicts = FALSE)
 library(leaflet)

@@ -9,6 +9,7 @@ The following example shows how these geocoding functions can be used to
 look up geocoding information:
 
 ``` r
+
 library(institutions)
 library(dplyr)
 #> 
@@ -22,15 +23,24 @@ library(dplyr)
 library(curl)
 #> Using libcurl 8.5.0 with OpenSSL/3.0.13
 
-institutions_download(overwrite = TRUE)
+have_data <- tryCatch({
+  institutions_download(overwrite = TRUE)
+  TRUE
+}, error = function(e) {
+  message("Skipping live example: ", conditionMessage(e))
+  FALSE
+})
 #> Downloading data from https://ndownloader.figshare.com/files/30895309
 #> Deleting existing db at /home/runner/.config/institutions/grid.db
 #> Generating db, storing at /home/runner/.config/institutions/grid.db
 #> Generating Full Text Search index
+```
+
+``` r
 
 # using Nominatim API (Open Street Map)
-osm <- 
-  geocode_nominatim("Kungliga Tekniska Högskolan") 
+osm <-
+  geocode_nominatim("Kungliga Tekniska Högskolan")
 
 if (nrow(osm) > 0) {
   # coordinates etc
@@ -39,7 +49,7 @@ if (nrow(osm) > 0) {
 }
 #> Rows: 1
 #> Columns: 26
-#> $ place_id                 <int> 154670372
+#> $ place_id                 <int> 165702790
 #> $ licence                  <chr> "Data © OpenStreetMap contributors, ODbL 1.0.…
 #> $ osm_type                 <chr> "way"
 #> $ osm_id                   <int> 317156082
@@ -48,21 +58,21 @@ if (nrow(osm) > 0) {
 #> $ class                    <chr> "amenity"
 #> $ type                     <chr> "university"
 #> $ place_rank               <int> 30
-#> $ importance               <dbl> 0.5528903
+#> $ importance               <dbl> 0.5636313
 #> $ addresstype              <chr> "amenity"
 #> $ name                     <chr> "Kungliga Tekniska högskolan"
-#> $ display_name             <chr> "Kungliga Tekniska högskolan, Körsbärsvägen, …
+#> $ display_name             <chr> "Kungliga Tekniska högskolan, Baldersgatan, L…
 #> $ boundingbox              <list> <"59.3454636", "59.3542387", "18.0623594", "1…
 #> $ address.amenity          <chr> "Kungliga Tekniska högskolan"
-#> $ address.road             <chr> "Körsbärsvägen"
-#> $ address.neighbourhood    <chr> "Ruddammen"
-#> $ address.suburb           <chr> "Norra Djurgården"
+#> $ address.road             <chr> "Baldersgatan"
+#> $ address.neighbourhood    <chr> "Lärkstaden"
+#> $ address.suburb           <chr> "Östermalm"
 #> $ address.city_district    <chr> "Norra innerstadens stadsdelsområde"
 #> $ address.city             <chr> "Stockholm"
 #> $ address.municipality     <chr> "Stockholms kommun"
 #> $ address.county           <chr> "Stockholms län"
 #> $ `address.ISO3166-2-lvl4` <chr> "SE-AB"
-#> $ address.postcode         <chr> "114 21"
+#> $ address.postcode         <chr> "100 41"
 #> $ address.country          <chr> "Sverige"
 #> $ address.country_code     <chr> "se"
 #> # A tibble: 1 × 2

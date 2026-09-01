@@ -1,6 +1,7 @@
 # Data from the Research Organization Registry Community
 
 ``` r
+
 library(institutions)
 library(dplyr)
 #> 
@@ -25,6 +26,7 @@ functions in this R package.
 Some examples of usage follow:
 
 ``` r
+
 
 # get a GRID identifier for a specific institution
 id_kth_grid <- 
@@ -105,6 +107,7 @@ A few examples:
 
 ``` r
 
+
 # what top five types of orgs are represented in this data?
 ror$ror_types %>% count(types) %>% arrange(desc(n)) %>% head(5)
 #> # A tibble: 5 × 2
@@ -167,6 +170,7 @@ ror$ror_links %>% filter(id == "https://ror.org/01eea1w69")
 ### External identifiers
 
 ``` r
+
 
 extids <- ror$ror_ids
 

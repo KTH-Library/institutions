@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Geocoding usage example • institutions</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Geocoding usage example">
 </head>
@@ -88,15 +88,21 @@ to look up geocoding information:</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/curl" class="external-link">curl</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using libcurl 8.5.0 with OpenSSL/3.0.13</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span><span class="op">(</span>overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">have_data</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/institutions_download.html">institutions_download</a></span><span class="op">(</span>overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="cn">TRUE</span></span>
+<span><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Skipping live example: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">conditionMessage</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="cn">FALSE</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Downloading data from https://ndownloader.figshare.com/files/30895309</span></span>
 <span><span class="co">#&gt; Deleting existing db at /home/runner/.config/institutions/grid.db</span></span>
 <span><span class="co">#&gt; Generating db, storing at /home/runner/.config/institutions/grid.db</span></span>
-<span><span class="co">#&gt; Generating Full Text Search index</span></span>
-<span></span>
-<span><span class="co"># using Nominatim API (Open Street Map)</span></span>
-<span><span class="va">osm</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="../reference/geocode_nominatim.html">geocode_nominatim</a></span><span class="op">(</span><span class="st">"Kungliga Tekniska Högskolan"</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; Generating Full Text Search index</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># using Nominatim API (Open Street Map)</span></span>
+<span><span class="va">osm</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="../reference/geocode_nominatim.html">geocode_nominatim</a></span><span class="op">(</span><span class="st">"Kungliga Tekniska Högskolan"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">osm</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># coordinates etc</span></span>
@@ -105,7 +111,7 @@ to look up geocoding information:</p>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Rows: 1</span></span>
 <span><span class="co">#&gt; Columns: 26</span></span>
-<span><span class="co">#&gt; $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 154670372</span></span>
+<span><span class="co">#&gt; $ place_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 165702790</span></span>
 <span><span class="co">#&gt; $ licence                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Data © OpenStreetMap contributors, ODbL 1.0.…</span></span>
 <span><span class="co">#&gt; $ osm_type                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "way"</span></span>
 <span><span class="co">#&gt; $ osm_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 317156082</span></span>
@@ -114,21 +120,21 @@ to look up geocoding information:</p>
 <span><span class="co">#&gt; $ class                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "amenity"</span></span>
 <span><span class="co">#&gt; $ type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "university"</span></span>
 <span><span class="co">#&gt; $ place_rank               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 30</span></span>
-<span><span class="co">#&gt; $ importance               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.5528903</span></span>
+<span><span class="co">#&gt; $ importance               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.5636313</span></span>
 <span><span class="co">#&gt; $ addresstype              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "amenity"</span></span>
 <span><span class="co">#&gt; $ name                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kungliga Tekniska högskolan"</span></span>
-<span><span class="co">#&gt; $ display_name             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kungliga Tekniska högskolan, Körsbärsvägen, …</span></span>
+<span><span class="co">#&gt; $ display_name             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kungliga Tekniska högskolan, Baldersgatan, L…</span></span>
 <span><span class="co">#&gt; $ boundingbox              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"59.3454636", "59.3542387", "18.0623594", "1…</span></span>
 <span><span class="co">#&gt; $ address.amenity          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kungliga Tekniska högskolan"</span></span>
-<span><span class="co">#&gt; $ address.road             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Körsbärsvägen"</span></span>
-<span><span class="co">#&gt; $ address.neighbourhood    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ruddammen"</span></span>
-<span><span class="co">#&gt; $ address.suburb           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Norra Djurgården"</span></span>
+<span><span class="co">#&gt; $ address.road             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Baldersgatan"</span></span>
+<span><span class="co">#&gt; $ address.neighbourhood    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lärkstaden"</span></span>
+<span><span class="co">#&gt; $ address.suburb           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Östermalm"</span></span>
 <span><span class="co">#&gt; $ address.city_district    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Norra innerstadens stadsdelsområde"</span></span>
 <span><span class="co">#&gt; $ address.city             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Stockholm"</span></span>
 <span><span class="co">#&gt; $ address.municipality     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Stockholms kommun"</span></span>
 <span><span class="co">#&gt; $ address.county           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Stockholms län"</span></span>
 <span><span class="co">#&gt; $ `address.ISO3166-2-lvl4` <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SE-AB"</span></span>
-<span><span class="co">#&gt; $ address.postcode         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "114 21"</span></span>
+<span><span class="co">#&gt; $ address.postcode         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "100 41"</span></span>
 <span><span class="co">#&gt; $ address.country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sverige"</span></span>
 <span><span class="co">#&gt; $ address.country_code     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "se"</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
@@ -161,7 +167,7 @@ to look up geocoding information:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
