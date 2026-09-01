@@ -23,11 +23,19 @@ library(institutions)
 library(dplyr)
 library(curl)
 
-institutions_download(overwrite = TRUE)
+have_data <- tryCatch({
+  institutions_download(overwrite = TRUE)
+  TRUE
+}, error = function(e) {
+  message("Skipping live example: ", conditionMessage(e))
+  FALSE
+})
+```
 
+```{r, eval = have_data}
 # using Nominatim API (Open Street Map)
-osm <- 
-  geocode_nominatim("Kungliga Tekniska Högskolan") 
+osm <-
+  geocode_nominatim("Kungliga Tekniska Högskolan")
 
 if (nrow(osm) > 0) {
   # coordinates etc
